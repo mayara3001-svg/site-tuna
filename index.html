@@ -119,7 +119,8 @@
   .contact-card a,.contact-card .item{display:block;padding:26px;border-radius:18px;transition:background .2s;}
   .contact-card a:hover{background:#fff;}
   .contact-card .label{font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:#008090;margin-bottom:8px;}
-  .contact-card .val{font-family:'Jost',sans-serif;font-size:1.4rem;color:#103237;}
+  .contact-card .val{font-family:'Jost',sans-serif;font-size:1.4rem;color:#103237;display:flex;align-items:center;gap:11px;}
+  .contact-card .val .ico{flex:none;width:22px;height:22px;color:#008090;}
   .contact-card .divider{height:1px;background:rgba(0,128,144,.12);margin:0 26px;}
 
   /* ---- Footer ---- */
@@ -132,6 +133,8 @@
   .footer-col{display:flex;flex-direction:column;gap:14px;font-size:15px;}
   .footer-col a,.footer-col span{color:rgba(255,255,255,.7);transition:color .2s;}
   .footer-col a:hover{color:#fff;}
+  .footer-col a.with-ico{display:inline-flex;align-items:center;gap:9px;}
+  .footer-col .ico{flex:none;width:16px;height:16px;}
   .footer-bottom{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;padding-top:24px;font-size:13px;color:rgba(255,255,255,.5);}
 
   /* ---- Responsive ---- */
@@ -268,12 +271,12 @@
       <div class="contact-card reveal">
         <a href="mailto:equipetunamarketing@gmail.com">
           <div class="label" data-i="contactEmailLabel">E-mail</div>
-          <div class="val">equipetunamarketing@gmail.com</div>
+          <div class="val"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>equipetunamarketing@gmail.com</div>
         </a>
         <div class="divider"></div>
         <a href="https://instagram.com/tunamarketing" target="_blank" rel="noopener">
           <div class="label" data-i="contactInstaLabel">Instagram</div>
-          <div class="val">@tunamarketing</div>
+          <div class="val"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg>@tunamarketing</div>
         </a>
         <div class="divider"></div>
         <div class="item">
@@ -300,8 +303,8 @@
             <a href="#contato" data-i="navContact">Contato</a>
           </div>
           <div class="footer-col">
-            <a href="mailto:equipetunamarketing@gmail.com">equipetunamarketing@gmail.com</a>
-            <a href="https://instagram.com/tunamarketing" target="_blank" rel="noopener">@tunamarketing</a>
+            <a class="with-ico" href="mailto:equipetunamarketing@gmail.com"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>equipetunamarketing@gmail.com</a>
+            <a class="with-ico" href="https://instagram.com/tunamarketing" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg>@tunamarketing</a>
             <span data-i="contactLoc">Porto, Portugal</span>
           </div>
         </div>
