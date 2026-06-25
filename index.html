@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tuna — Agência de Marketing Digital · Porto</title>
+<meta name="description" content="A Tuna é uma agência de marketing digital no Porto. Desenvolvemos soluções que geram crescimento real, atuando como parceiros estratégicos em cada etapa.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;font-family:'Hanken Grotesk',sans-serif;color:#14282b;background:#fff;overflow-x:clip;position:relative;}
+  ::selection{background:#008090;color:#fff;}
+  a{text-decoration:none;color:inherit;}
+  img{display:block;}
+
+  @keyframes revUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:none;}}
+  @keyframes drift{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+  /* Scroll-reveal: animate when .in-view is added (and natively where supported) */
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s ease;}
+  .reveal.in-view{opacity:1;transform:none;}
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+    .hero-anim{animation:none!important;}
+  }
+
+  /* ---- Layout helpers ---- */
+  .wrap{max-width:1240px;margin:0 auto;}
+
+  /* ---- Header ---- */
+  .site-header{position:sticky;top:0;z-index:50;background:rgba(247,245,239,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(0,128,144,.12);}
+  .header-inner{max-width:1240px;margin:0 auto;padding:18px 40px;display:flex;align-items:center;justify-content:space-between;gap:24px;}
+  .nav{display:flex;align-items:center;gap:34px;font-size:15px;font-weight:500;color:#2a4448;}
+  .nav a{transition:color .2s;}
+  .nav a:hover{color:#008090;}
+  .header-actions{display:flex;align-items:center;gap:16px;}
+  .lang-switch{display:flex;align-items:center;background:rgba(0,128,144,.08);border-radius:999px;padding:3px;}
+  .lang-switch button{padding:6px 15px;border-radius:999px;cursor:pointer;font-size:13px;font-weight:600;letter-spacing:.04em;border:none;transition:all .25s;font-family:'Hanken Grotesk',sans-serif;background:transparent;color:#0b6b76;}
+  .lang-switch button.active{background:#008090;color:#fff;}
+  .btn-cta{background:#008090;color:#fff;padding:11px 22px;border-radius:999px;font-size:14px;font-weight:600;transition:background .25s,transform .25s;}
+  .btn-cta:hover{background:#00626f;transform:translateY(-1px);}
+
+  /* ---- Hero ---- */
+  .hero{background:#033b43;position:relative;overflow:hidden;min-height:90vh;display:flex;align-items:center;}
+  .hero-waves{position:absolute;inset:0;opacity:.16;pointer-events:none;}
+  .hero-waves .row{position:absolute;left:0;width:200%;}
+  .hero-waves .row1{top:30%;animation:drift 26s linear infinite;}
+  .hero-waves .row2{top:58%;animation:drift 34s linear infinite;}
+  .hero-inner{position:relative;max-width:1000px;margin:0 auto;padding:110px 40px;text-align:center;animation:revUp 1s ease both;}
+  .hero-logo{height:42px;width:auto;margin:0 auto 38px;opacity:.95;}
+  .kicker{font-size:12px;letter-spacing:.24em;text-transform:uppercase;font-weight:600;color:#7fd4dc;margin-bottom:28px;}
+  .hero h1{font-family:'Jost',sans-serif;font-weight:300;font-size:clamp(2.8rem,6vw,5.6rem);line-height:1.03;letter-spacing:-.02em;margin:0 0 30px;color:#fff;text-wrap:balance;}
+  .hero p.sub{font-size:20px;line-height:1.65;color:rgba(255,255,255,.78);max-width:36rem;margin:0 auto 40px;}
+  .hero-ctas{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+  .btn-light{background:#fff;color:#033b43;padding:16px 34px;border-radius:999px;font-size:15px;font-weight:600;transition:transform .25s,box-shadow .25s;}
+  .btn-light:hover{transform:translateY(-2px);box-shadow:0 16px 40px -12px rgba(0,0,0,.5);}
+  .btn-ghost{border:1px solid rgba(255,255,255,.4);color:#fff;padding:16px 34px;border-radius:999px;font-size:15px;font-weight:600;transition:all .25s;}
+  .btn-ghost:hover{background:rgba(255,255,255,.12);}
+
+  /* ---- Sobre ---- */
+  .sobre{background:#fff;padding:110px 40px;}
+  .sobre-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:60px;align-items:start;}
+  .eyebrow{font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:#008090;margin-bottom:20px;}
+  .sobre h2{font-family:'Jost',sans-serif;font-weight:300;font-size:clamp(2rem,3.6vw,3.2rem);line-height:1.08;letter-spacing:-.02em;margin:0;color:#103237;text-wrap:balance;}
+  .sobre-text{font-size:19px;line-height:1.75;color:#4a5d60;margin:0 0 44px;max-width:40rem;}
+  .mv-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(0,128,144,.16);border:1px solid rgba(0,128,144,.16);border-radius:20px;overflow:hidden;}
+  .mv-cell{background:#f7f5ef;padding:34px 32px;}
+  .mv-cell .eyebrow{margin-bottom:14px;letter-spacing:.18em;}
+  .mv-cell p{margin:0;font-size:16px;line-height:1.65;color:#2a4448;}
+  .about-img{margin-top:64px;border-radius:24px;overflow:hidden;aspect-ratio:16/6;background:#e3eded;box-shadow:0 30px 70px -34px rgba(0,128,144,.4);}
+  .about-img img{width:100%;height:100%;object-fit:cover;}
+  .values-head{display:flex;align-items:baseline;gap:18px;margin-bottom:36px;}
+  .values-head .eyebrow{margin-bottom:0;}
+  .values-head h3{font-family:'Jost',sans-serif;font-weight:300;font-size:clamp(1.5rem,2.6vw,2.2rem);margin:0;color:#103237;}
+  .values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .value{border-top:2px solid #008090;padding:26px 4px 0;}
+  .value .num{font-family:'Jost',sans-serif;font-weight:300;font-size:2.4rem;color:rgba(0,128,144,.45);line-height:1;margin-bottom:16px;}
+  .value h4{font-family:'Jost',sans-serif;font-weight:500;font-size:1.35rem;margin:0 0 12px;color:#103237;}
+  .value p{margin:0;font-size:16px;line-height:1.65;color:#4a5d60;}
+
+  /* ---- Serviços ---- */
+  .servicos{background:#f7f5ef;padding:110px 40px;position:relative;overflow:hidden;}
+  .servicos .intro{max-width:40rem;margin-bottom:56px;}
+  .servicos h2{font-family:'Jost',sans-serif;font-weight:300;font-size:clamp(2rem,3.8vw,3.3rem);line-height:1.08;letter-spacing:-.02em;margin:0 0 18px;color:#103237;text-wrap:balance;}
+  .servicos .intro p{font-size:18px;line-height:1.6;color:#4a5d60;margin:0;}
+  .services-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 56px;}
+  .service{display:flex;gap:22px;padding:30px 0;border-top:1px solid rgba(0,128,144,.18);}
+  .service .num{font-family:'Jost',sans-serif;font-weight:400;font-size:.95rem;color:#008090;padding-top:6px;letter-spacing:.05em;}
+  .service h3{font-family:'Jost',sans-serif;font-weight:500;font-size:1.45rem;margin:0 0 10px;color:#103237;}
+  .service p{margin:0;font-size:16px;line-height:1.6;color:#4a5d60;max-width:26rem;}
+
+  /* ---- Depoimentos ---- */
+  .depoimentos{background:#033b43;padding:110px 40px;position:relative;overflow:hidden;}
+  .depoimentos .wave{position:absolute;top:0;left:0;width:200%;opacity:.1;animation:drift 30s linear infinite;pointer-events:none;}
+  .depoimentos .inner{position:relative;}
+  .depoimentos .intro{max-width:38rem;margin-bottom:56px;}
+  .depoimentos .eyebrow{color:#7fd4dc;}
+  .depoimentos h2{font-family:'Jost',sans-serif;font-weight:300;font-size:clamp(2rem,3.8vw,3.3rem);line-height:1.08;letter-spacing:-.02em;margin:0;color:#fff;text-wrap:balance;}
+  .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .testi{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:22px;padding:34px 30px;display:flex;flex-direction:column;}
+  .testi .mark{font-family:'Jost',sans-serif;font-weight:300;font-size:3rem;line-height:.6;color:#7fd4dc;margin-bottom:18px;height:24px;}
+  .testi .quote{font-family:'Jost',sans-serif;font-weight:300;font-size:1.3rem;line-height:1.5;color:#fff;margin:0 0 28px;flex:1;}
+  .testi .who{display:flex;align-items:center;gap:14px;padding-top:20px;border-top:1px solid rgba(255,255,255,.12);}
+  .testi .avatar{width:42px;height:42px;border-radius:50%;background:rgba(127,212,220,.18);display:flex;align-items:center;justify-content:center;font-family:'Jost',sans-serif;color:#7fd4dc;font-size:1.1rem;}
+  .testi .author{font-weight:600;font-size:15px;color:#fff;}
+  .testi .role{font-size:13px;color:rgba(255,255,255,.6);}
+
+  /* ---- Contato ---- */
+  .contato{background:#fff;padding:110px 40px;}
+  .contato-grid{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center;}
+  .contato h2{font-family:'Jost',sans-serif;font-weight:300;font-size:clamp(2.1rem,4vw,3.5rem);line-height:1.06;letter-spacing:-.02em;margin:0 0 22px;color:#103237;text-wrap:balance;}
+  .contato .lead{font-size:19px;line-height:1.65;color:#4a5d60;margin:0 0 36px;max-width:32rem;}
+  .btn-arrow{display:inline-flex;align-items:center;gap:12px;background:#008090;color:#fff;padding:16px 32px;border-radius:999px;font-size:15px;font-weight:600;transition:background .25s,transform .25s;}
+  .btn-arrow:hover{background:#00626f;transform:translateY(-2px);}
+  .contact-card{background:#f7f5ef;border-radius:26px;padding:14px;border:1px solid rgba(0,128,144,.14);}
+  .contact-card a,.contact-card .item{display:block;padding:26px;border-radius:18px;transition:background .2s;}
+  .contact-card a:hover{background:#fff;}
+  .contact-card .label{font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:#008090;margin-bottom:8px;}
+  .contact-card .val{font-family:'Jost',sans-serif;font-size:1.4rem;color:#103237;}
+  .contact-card .divider{height:1px;background:rgba(0,128,144,.12);margin:0 26px;}
+
+  /* ---- Footer ---- */
+  .site-footer{background:#033b43;padding:70px 40px 40px;position:relative;overflow:hidden;}
+  .footer-top{display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap;padding-bottom:44px;border-bottom:1px solid rgba(255,255,255,.12);}
+  .footer-brand{max-width:22rem;}
+  .footer-brand img{height:30px;width:auto;margin-bottom:22px;}
+  .footer-brand p{font-family:'Jost',sans-serif;font-weight:300;font-size:1.3rem;line-height:1.4;color:rgba(255,255,255,.85);margin:0;}
+  .footer-cols{display:flex;gap:60px;flex-wrap:wrap;}
+  .footer-col{display:flex;flex-direction:column;gap:14px;font-size:15px;}
+  .footer-col a,.footer-col span{color:rgba(255,255,255,.7);transition:color .2s;}
+  .footer-col a:hover{color:#fff;}
+  .footer-bottom{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;padding-top:24px;font-size:13px;color:rgba(255,255,255,.5);}
+
+  /* ---- Responsive ---- */
+  @media (max-width:900px){
+    .header-inner{padding:16px 22px;}
+    .nav{display:none;}
+    .sobre,.servicos,.depoimentos,.contato{padding:72px 22px;}
+    .sobre-grid{grid-template-columns:1fr;gap:32px;}
+    .values-grid,.testi-grid{grid-template-columns:1fr;}
+    .services-grid{grid-template-columns:1fr;gap:0;}
+    .contato-grid{grid-template-columns:1fr;gap:36px;}
+    .about-img{aspect-ratio:16/10;}
+    .hero-inner{padding:90px 22px;}
+  }
+  @media (max-width:560px){
+    .mv-grid{grid-template-columns:1fr;}
+    .footer-cols{gap:32px;}
+  }
+</style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="#top" aria-label="Tuna — início"><img src="assets/tuna-logo-teal.png" alt="Tuna" style="height:28px;width:auto;"></a>
+      <nav class="nav">
+        <a href="#sobre" data-i="navAbout">Sobre</a>
+        <a href="#servicos" data-i="navServices">Serviços</a>
+        <a href="#depoimentos" data-i="navTesti">Depoimentos</a>
+        <a href="#contato" data-i="navContact">Contato</a>
+      </nav>
+      <div class="header-actions">
+        <div class="lang-switch" role="group" aria-label="Idioma">
+          <button type="button" data-lang="pt" class="active">PT</button>
+          <button type="button" data-lang="en">EN</button>
+        </div>
+        <a href="#contato" class="btn-cta" data-i="cta">Vamos conversar</a>
+      </div>
+    </div>
+  </header>
+
+  <span id="top"></span>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-waves">
+      <div class="row row1">
+        <svg viewBox="0 0 960 120" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;"><path d="M0 60 C120 14 200 106 320 60 C440 14 520 106 640 60 C760 14 840 106 960 60" stroke="#7fd4dc" stroke-width="2"/></svg>
+      </div>
+      <div class="row row2">
+        <svg viewBox="0 0 960 120" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;"><path d="M0 60 C120 14 200 106 320 60 C440 14 520 106 640 60 C760 14 840 106 960 60" stroke="#7fd4dc" stroke-width="2"/></svg>
+      </div>
+    </div>
+    <div class="hero-inner">
+      <img class="hero-logo" src="assets/tuna-logo-white.png" alt="Tuna">
+      <div class="kicker" data-i="heroKicker">Agência de marketing digital · Porto</div>
+      <h1 data-i="heroTitle">Somos parceiros do seu crescimento.</h1>
+      <p class="sub" data-i="heroSub">Desenvolvemos soluções de marketing que geram crescimento real, atuando como parceiros estratégicos em cada etapa da sua jornada.</p>
+      <div class="hero-ctas">
+        <a href="#contato" class="btn-light" data-i="heroCta1">Vamos conversar</a>
+        <a href="#servicos" class="btn-ghost" data-i="heroCta2">Os nossos serviços</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section id="sobre" class="sobre">
+    <div class="wrap">
+      <div class="sobre-grid reveal">
+        <div>
+          <div class="eyebrow" data-i="aboutLabel">Sobre a Tuna</div>
+          <h2 data-i="aboutHeading">Parceiros estratégicos do seu crescimento.</h2>
+        </div>
+        <div>
+          <p class="sobre-text" data-i="aboutText">A Tuna é uma agência de marketing digital que acredita no poder da colaboração. Trabalhamos lado a lado com cada cliente para transformar objetivos em resultados concretos e duradouros.</p>
+          <div class="mv-grid">
+            <div class="mv-cell">
+              <div class="eyebrow" data-i="missionLabel">Missão</div>
+              <p data-i="missionText">Desenvolver soluções de marketing que gerem crescimento real para os nossos clientes, atuando como parceiros estratégicos em cada etapa da jornada.</p>
+            </div>
+            <div class="mv-cell">
+              <div class="eyebrow" data-i="visionLabel">Visão</div>
+              <p data-i="visionText">Ser reconhecida como uma agência que transforma negócios através da colaboração, da inovação e da construção de relações duradouras.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:84px;">
+        <div class="values-head reveal">
+          <div class="eyebrow" data-i="valuesLabel">Valores</div>
+          <h3 data-i="valuesHeading">O que nos move</h3>
+        </div>
+        <div class="values-grid" id="values"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVIÇOS -->
+  <section id="servicos" class="servicos">
+    <div class="wrap">
+      <div class="intro reveal">
+        <div class="eyebrow" data-i="servicesLabel">Serviços</div>
+        <h2 data-i="servicesHeading">Tudo o que a sua marca precisa para crescer.</h2>
+        <p data-i="servicesSub">Soluções completas, pensadas para cada etapa da sua jornada.</p>
+      </div>
+      <div class="services-grid" id="services"></div>
+    </div>
+  </section>
+
+  <!-- DEPOIMENTOS -->
+  <section id="depoimentos" class="depoimentos">
+    <div class="wave">
+      <svg viewBox="0 0 960 120" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;"><path d="M0 60 C120 14 200 106 320 60 C440 14 520 106 640 60 C760 14 840 106 960 60" stroke="#7fd4dc" stroke-width="2"/></svg>
+    </div>
+    <div class="wrap inner">
+      <div class="intro reveal">
+        <div class="eyebrow" data-i="testiLabel">Depoimentos</div>
+        <h2 data-i="testiHeading">Histórias de quem cresceu connosco.</h2>
+      </div>
+      <div class="testi-grid" id="testimonials"></div>
+    </div>
+  </section>
+
+  <!-- CONTATO -->
+  <section id="contato" class="contato">
+    <div class="contato-grid">
+      <div class="reveal">
+        <div class="eyebrow" data-i="contactLabel">Contato</div>
+        <h2 data-i="contactHeading">Vamos criar algo extraordinário juntos.</h2>
+        <p class="lead" data-i="contactSub">Conte-nos sobre o seu projeto e os seus objetivos. Respondemos a todas as mensagens.</p>
+        <a href="mailto:equipetunamarketing@gmail.com" class="btn-arrow"><span data-i="contactCta">Enviar mensagem</span><span style="font-size:18px;">&rarr;</span></a>
+      </div>
+      <div class="contact-card reveal">
+        <a href="mailto:equipetunamarketing@gmail.com">
+          <div class="label" data-i="contactEmailLabel">E-mail</div>
+          <div class="val">equipetunamarketing@gmail.com</div>
+        </a>
+        <div class="divider"></div>
+        <a href="https://instagram.com/tunamarketing" target="_blank" rel="noopener">
+          <div class="label" data-i="contactInstaLabel">Instagram</div>
+          <div class="val">@tunamarketing</div>
+        </a>
+        <div class="divider"></div>
+        <div class="item">
+          <div class="label" data-i="contactLocLabel">Localização</div>
+          <div class="val" data-i="contactLoc">Porto, Portugal</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="assets/tuna-logo-white.png" alt="Tuna">
+          <p data-i="footerTagline">Marketing que gera crescimento real.</p>
+        </div>
+        <div class="footer-cols">
+          <div class="footer-col">
+            <a href="#sobre" data-i="navAbout">Sobre</a>
+            <a href="#servicos" data-i="navServices">Serviços</a>
+            <a href="#depoimentos" data-i="navTesti">Depoimentos</a>
+            <a href="#contato" data-i="navContact">Contato</a>
+          </div>
+          <div class="footer-col">
+            <a href="mailto:equipetunamarketing@gmail.com">equipetunamarketing@gmail.com</a>
+            <a href="https://instagram.com/tunamarketing" target="_blank" rel="noopener">@tunamarketing</a>
+            <span data-i="contactLoc">Porto, Portugal</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Tuna. <span data-i="footerRights">Todos os direitos reservados.</span></span>
+        <span>Porto, Portugal</span>
+      </div>
+    </div>
+  </footer>
+
+<script>
+const COPY = {
+  pt: {
+    navAbout:'Sobre', navServices:'Serviços', navTesti:'Depoimentos', navContact:'Contato',
+    cta:'Vamos conversar',
+    heroKicker:'Agência de marketing digital · Porto',
+    heroTitle:'Somos parceiros do seu crescimento.',
+    heroSub:'Desenvolvemos soluções de marketing que geram crescimento real, atuando como parceiros estratégicos em cada etapa da sua jornada.',
+    heroCta1:'Vamos conversar', heroCta2:'Os nossos serviços',
+    aboutLabel:'Sobre a Tuna',
+    aboutHeading:'Parceiros estratégicos do seu crescimento.',
+    aboutText:'A Tuna é uma agência de marketing digital que acredita no poder da colaboração. Trabalhamos lado a lado com cada cliente para transformar objetivos em resultados concretos e duradouros.',
+    missionLabel:'Missão',
+    missionText:'Desenvolver soluções de marketing que gerem crescimento real para os nossos clientes, atuando como parceiros estratégicos em cada etapa da jornada.',
+    visionLabel:'Visão',
+    visionText:'Ser reconhecida como uma agência que transforma negócios através da colaboração, da inovação e da construção de relações duradouras.',
+    valuesLabel:'Valores', valuesHeading:'O que nos move',
+    servicesLabel:'Serviços',
+    servicesHeading:'Tudo o que a sua marca precisa para crescer.',
+    servicesSub:'Soluções completas, pensadas para cada etapa da sua jornada.',
+    testiLabel:'Depoimentos', testiHeading:'Histórias de quem cresceu connosco.',
+    contactLabel:'Contato',
+    contactHeading:'Vamos criar algo extraordinário juntos.',
+    contactSub:'Conte-nos sobre o seu projeto e os seus objetivos. Respondemos a todas as mensagens.',
+    contactEmailLabel:'E-mail', contactInstaLabel:'Instagram', contactLocLabel:'Localização', contactLoc:'Porto, Portugal',
+    contactCta:'Enviar mensagem',
+    footerTagline:'Marketing que gera crescimento real.',
+    footerRights:'Todos os direitos reservados.'
+  },
+  en: {
+    navAbout:'About', navServices:'Services', navTesti:'Testimonials', navContact:'Contact',
+    cta:"Let's talk",
+    heroKicker:'Digital marketing agency · Porto',
+    heroTitle:'We are partners in your growth.',
+    heroSub:'We craft marketing solutions that drive real growth, acting as strategic partners at every stage of your journey.',
+    heroCta1:"Let's talk", heroCta2:'Our services',
+    aboutLabel:'About Tuna',
+    aboutHeading:'Strategic partners in your growth.',
+    aboutText:'Tuna is a digital marketing agency that believes in the power of collaboration. We work side by side with every client to turn goals into concrete, lasting results.',
+    missionLabel:'Mission',
+    missionText:'To develop marketing solutions that generate real growth for our clients, acting as strategic partners at every stage of the journey.',
+    visionLabel:'Vision',
+    visionText:'To be recognised as an agency that transforms businesses through collaboration, innovation and lasting relationships.',
+    valuesLabel:'Values', valuesHeading:'What drives us',
+    servicesLabel:'Services',
+    servicesHeading:'Everything your brand needs to grow.',
+    servicesSub:'Complete solutions, designed for every stage of your journey.',
+    testiLabel:'Testimonials', testiHeading:'Stories from those who grew with us.',
+    contactLabel:'Contact',
+    contactHeading:"Let's create something extraordinary together.",
+    contactSub:'Tell us about your project and your goals. We reply to every message.',
+    contactEmailLabel:'Email', contactInstaLabel:'Instagram', contactLocLabel:'Location', contactLoc:'Porto, Portugal',
+    contactCta:'Send message',
+    footerTagline:'Marketing that drives real growth.',
+    footerRights:'All rights reserved.'
+  }
+};
+
+const SERVICES = {
+  pt:[
+    {num:'01',name:'Estratégia de Marketing',desc:'Planeamento orientado a dados para posicionar a sua marca e definir o caminho do crescimento.'},
+    {num:'02',name:'Gestão de Redes Sociais',desc:'Presença consistente e criativa que aproxima a sua marca da comunidade certa.'},
+    {num:'03',name:'Branding e Identidade Visual',desc:'Identidades memoráveis que traduzem a essência do seu negócio.'},
+    {num:'04',name:'Marketing de Conteúdo',desc:'Conteúdo com propósito que educa, envolve e converte.'},
+    {num:'05',name:'Marketing de Influência',desc:'Parcerias autênticas que ampliam o alcance e a confiança na sua marca.'},
+    {num:'06',name:'Publicidade Digital (Ads)',desc:'Campanhas de tráfego pago otimizadas para retorno real.'},
+    {num:'07',name:'Consultoria de Crescimento',desc:'Acompanhamento estratégico para escalar com consistência.'}
+  ],
+  en:[
+    {num:'01',name:'Marketing Strategy',desc:'Data-driven planning to position your brand and map the path to growth.'},
+    {num:'02',name:'Social Media Management',desc:'Consistent, creative presence that connects your brand to the right community.'},
+    {num:'03',name:'Branding & Visual Identity',desc:'Memorable identities that translate the essence of your business.'},
+    {num:'04',name:'Content Marketing',desc:'Purposeful content that educates, engages and converts.'},
+    {num:'05',name:'Influencer Marketing',desc:'Authentic partnerships that expand reach and trust in your brand.'},
+    {num:'06',name:'Digital Advertising (Ads)',desc:'Paid media campaigns optimised for real return.'},
+    {num:'07',name:'Growth Consulting',desc:'Strategic guidance to scale with consistency.'}
+  ]
+};
+
+const VALUES = {
+  pt:[
+    {num:'01',name:'Parceria & Transparência',desc:'Parceria genuína e transparência total em cada passo.'},
+    {num:'02',name:'Excelência & Inovação',desc:'Excelência e inovação como padrão, sempre.'},
+    {num:'03',name:'Colaboração',desc:'Colaboração como motor de resultados extraordinários.'}
+  ],
+  en:[
+    {num:'01',name:'Partnership & Transparency',desc:'Genuine partnership and full transparency at every step.'},
+    {num:'02',name:'Excellence & Innovation',desc:'Excellence and innovation as the standard, always.'},
+    {num:'03',name:'Collaboration',desc:'Collaboration as the engine of extraordinary results.'}
+  ]
+};
+
+const TESTI = {
+  pt:[
+    {quote:'A Tuna entendeu o nosso negócio como ninguém. Em poucos meses vimos o crescimento que procurávamos há anos.',author:'Cliente Tuna',role:'Setor de Retalho',initial:'R'},
+    {quote:'Mais do que uma agência, ganhámos parceiros. Transparência e resultados em cada etapa.',author:'Cliente Tuna',role:'Restauração',initial:'M'},
+    {quote:'Estratégia, criatividade e execução impecável. Recomendamos de olhos fechados.',author:'Cliente Tuna',role:'Serviços',initial:'S'}
+  ],
+  en:[
+    {quote:'Tuna understood our business like no one else. In a few months we saw the growth we had been chasing for years.',author:'Tuna Client',role:'Retail',initial:'R'},
+    {quote:'More than an agency, we gained partners. Transparency and results at every stage.',author:'Tuna Client',role:'Hospitality',initial:'M'},
+    {quote:'Strategy, creativity and flawless execution. We recommend them without hesitation.',author:'Tuna Client',role:'Services',initial:'S'}
+  ]
+};
+
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function renderLists(lang){
+  document.getElementById('values').innerHTML = VALUES[lang].map(v => `
+    <div class="value reveal">
+      <div class="num">${esc(v.num)}</div>
+      <h4>${esc(v.name)}</h4>
+      <p>${esc(v.desc)}</p>
+    </div>`).join('');
+
+  document.getElementById('services').innerHTML = SERVICES[lang].map(s => `
+    <div class="service reveal">
+      <span class="num">${esc(s.num)}</span>
+      <div>
+        <h3>${esc(s.name)}</h3>
+        <p>${esc(s.desc)}</p>
+      </div>
+    </div>`).join('');
+
+  document.getElementById('testimonials').innerHTML = TESTI[lang].map(t => `
+    <div class="testi reveal">
+      <div class="mark">&ldquo;</div>
+      <p class="quote">${esc(t.quote)}</p>
+      <div class="who">
+        <div class="avatar">${esc(t.initial)}</div>
+        <div>
+          <div class="author">${esc(t.author)}</div>
+          <div class="role">${esc(t.role)}</div>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+let io;
+function observeReveals(){
+  if(io) io.disconnect();
+  if(!('IntersectionObserver' in window)){
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('in-view'));
+    return;
+  }
+  io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in-view'); io.unobserve(e.target); }});
+  }, {threshold:.12, rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+}
+
+function setLang(lang){
+  const dict = COPY[lang];
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i]').forEach(el => {
+    const k = el.getAttribute('data-i');
+    if(dict[k] != null) el.textContent = dict[k];
+  });
+  document.querySelectorAll('.lang-switch button').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+  renderLists(lang);
+  observeReveals();
+  try{ localStorage.setItem('tuna-lang', lang); }catch(e){}
+}
+
+document.querySelectorAll('.lang-switch button').forEach(b => {
+  b.addEventListener('click', () => setLang(b.dataset.lang));
+});
+
+let initial = 'pt';
+try{ const saved = localStorage.getItem('tuna-lang'); if(saved === 'pt' || saved === 'en') initial = saved; }catch(e){}
+setLang(initial);
+</script>
+</body>
+</html>

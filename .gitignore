@@ -1,0 +1,7 @@
+# Handoff bundle do Claude Design (não precisa de ir para o site)
+site-tuna-ag-ncia-de-marketing/
+
+# Ficheiros de sistema
+.DS_Store
+Thumbs.db
+desktop.ini
