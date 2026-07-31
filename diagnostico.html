@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diagnóstico gratuito · Tuna — Agência de Marketing Digital</title>
+<meta name="description" content="Responde a 8 perguntas rápidas e recebe um diagnóstico gratuito de marketing para o teu negócio, feito pela equipa da Tuna.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:'Hanken Grotesk',sans-serif;color:#14282b;background:#f7f5ef;min-height:100vh;}
+  a{text-decoration:none;color:inherit;}
+  img{display:block;}
+
+  .top{display:flex;justify-content:center;padding:28px 22px 0;}
+  .top img{height:30px;width:auto;}
+
+  .shell{max-width:640px;margin:0 auto;padding:36px 22px 80px;}
+
+  .progress{height:4px;background:rgba(0,128,144,.14);border-radius:999px;overflow:hidden;margin-bottom:36px;}
+  .progress-bar{height:100%;background:#008090;border-radius:999px;transition:width .35s ease;width:0%;}
+
+  .card{background:#fff;border:1px solid rgba(0,128,144,.14);border-radius:26px;padding:44px 38px;box-shadow:0 26px 60px -34px rgba(0,128,144,.35);}
+
+  .step{display:none;}
+  .step.active{display:block;animation:fadeUp .4s ease both;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
+
+  .eyebrow{font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:#008090;margin-bottom:14px;}
+  h1.intro-title{font-family:'Jost',sans-serif;font-weight:300;font-size:clamp(1.8rem,4vw,2.4rem);line-height:1.15;letter-spacing:-.01em;margin:0 0 16px;color:#103237;}
+  .intro-lead{font-size:17px;line-height:1.65;color:#4a5d60;margin:0 0 8px;}
+  .intro-meta{font-size:14px;color:#7a8b8d;margin:0 0 32px;}
+
+  .step h2{font-family:'Jost',sans-serif;font-weight:400;font-size:1.5rem;line-height:1.3;margin:0 0 26px;color:#103237;}
+
+  label.field-label{display:block;font-size:13px;font-weight:600;letter-spacing:.04em;color:#0b6b76;text-transform:uppercase;margin:0 0 8px;}
+  input[type=text],input[type=email],input[type=tel]{width:100%;font-family:'Hanken Grotesk',sans-serif;font-size:17px;padding:15px 18px;border-radius:14px;border:1.5px solid rgba(0,128,144,.22);background:#f7f5ef;color:#103237;transition:border-color .2s,background .2s;}
+  input:focus{outline:none;border-color:#008090;background:#fff;}
+  .field{margin-bottom:20px;}
+  .hint{font-size:13px;color:#7a8b8d;margin-top:8px;}
+
+  .choices{display:flex;flex-direction:column;gap:12px;}
+  .choice{display:block;position:relative;}
+  .choice input{position:absolute;opacity:0;pointer-events:none;}
+  .choice .box{display:flex;align-items:center;gap:14px;padding:16px 20px;border-radius:16px;border:1.5px solid rgba(0,128,144,.2);background:#f7f5ef;cursor:pointer;transition:border-color .2s,background .2s;font-size:16px;color:#2a4448;}
+  .choice .dot{flex:none;width:18px;height:18px;border-radius:50%;border:1.5px solid rgba(0,128,144,.4);display:flex;align-items:center;justify-content:center;}
+  .choice .dot::after{content:'';width:9px;height:9px;border-radius:50%;background:#008090;opacity:0;transform:scale(.5);transition:opacity .15s,transform .15s;}
+  .choice input:checked + .box{border-color:#008090;background:#e7f5f6;}
+  .choice input:checked + .box .dot::after{opacity:1;transform:scale(1);}
+  .choice .box:hover{border-color:#008090;}
+
+  .actions{display:flex;justify-content:space-between;align-items:center;margin-top:32px;gap:16px;}
+  .btn-next{background:#008090;color:#fff;padding:15px 30px;border-radius:999px;font-size:15px;font-weight:600;border:none;cursor:pointer;font-family:inherit;transition:background .2s,transform .2s;}
+  .btn-next:hover{background:#00626f;transform:translateY(-1px);}
+  .btn-next:disabled{background:#a9c9cc;cursor:not-allowed;transform:none;}
+  .btn-back{background:none;border:none;color:#4a5d60;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;padding:10px;}
+  .btn-back:hover{color:#103237;}
+  .enter-hint{font-size:12px;color:#9caeb0;margin-top:14px;text-align:right;}
+
+  .step[data-final] .icon-ok{width:56px;height:56px;border-radius:50%;background:#e7f5f6;display:flex;align-items:center;justify-content:center;margin:0 auto 22px;color:#008090;}
+  .step[data-final] h2{text-align:center;}
+  .step[data-final] p{text-align:center;font-size:16px;line-height:1.6;color:#4a5d60;}
+  .final-actions{display:flex;justify-content:center;margin-top:26px;}
+  .btn-whatsapp{display:inline-flex;align-items:center;gap:10px;background:#f7f5ef;border:1.5px solid rgba(0,128,144,.22);color:#103237;padding:13px 26px;border-radius:999px;font-size:14px;font-weight:600;}
+
+  .error-msg{display:none;background:#fdeeee;border:1px solid #f3c9c9;color:#a33;padding:14px 18px;border-radius:14px;font-size:14px;margin-top:18px;}
+  .error-msg.show{display:block;}
+
+  .whatsapp-alt{text-align:center;margin-top:24px;font-size:14px;color:#4a5d60;}
+  .whatsapp-alt a{color:#008090;font-weight:600;}
+
+  @media (max-width:560px){
+    .card{padding:32px 24px;}
+    .actions{flex-direction:column-reverse;align-items:stretch;}
+    .btn-next{width:100%;}
+    .btn-back{align-self:center;}
+  }
+</style>
+</head>
+<body>
+
+<div class="top">
+  <a href="/"><img src="assets/tuna-logo-teal.png" alt="Tuna"></a>
+</div>
+
+<div class="shell">
+  <div class="progress"><div class="progress-bar" id="progressBar"></div></div>
+
+  <div class="card">
+    <form id="diagForm">
+
+      <div class="step active" data-step="intro">
+        <div class="eyebrow">Diagnóstico gratuito</div>
+        <h1 class="intro-title">Vamos perceber se conseguimos ajudar o teu negócio a crescer.</h1>
+        <p class="intro-lead">8 perguntas rápidas (2 minutos). No fim, a nossa equipa analisa as respostas e entra em contacto contigo para marcar uma conversa.</p>
+        <p class="intro-meta">Sem compromisso. Os teus dados são usados só para este contacto.</p>
+        <div class="actions" style="justify-content:flex-end;">
+          <button type="button" class="btn-next" data-next>Começar</button>
+        </div>
+      </div>
+
+      <div class="step" data-step="nome">
+        <h2>Como te chamas?</h2>
+        <div class="field"><input type="text" id="f_nome" name="nome" autocomplete="given-name" required></div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next>Próximo</button>
+        </div>
+        <div class="enter-hint">Prime Enter&crarr; para continuar</div>
+      </div>
+
+      <div class="step" data-step="email">
+        <h2>Qual é o teu e-mail?</h2>
+        <div class="field"><input type="email" id="f_email" name="email" placeholder="nome@exemplo.com" autocomplete="email" required></div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next>Próximo</button>
+        </div>
+        <div class="enter-hint">Prime Enter&crarr; para continuar</div>
+      </div>
+
+      <div class="step" data-step="whatsapp">
+        <h2>Indicativo + WhatsApp</h2>
+        <div class="field"><input type="tel" id="f_whatsapp" name="whatsapp" placeholder="+351 9XX XXX XXX" autocomplete="tel" required></div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next>Próximo</button>
+        </div>
+        <div class="enter-hint">Prime Enter&crarr; para continuar</div>
+      </div>
+
+      <div class="step" data-step="negocio">
+        <h2>Nome do negócio e Instagram</h2>
+        <div class="field">
+          <label class="field-label" for="f_negocio">Nome do negócio</label>
+          <input type="text" id="f_negocio" name="negocio" required>
+        </div>
+        <div class="field">
+          <label class="field-label" for="f_instagram">@ Instagram do negócio</label>
+          <input type="text" id="f_instagram" name="instagram" placeholder="@teunegocio" required>
+        </div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next>Próximo</button>
+        </div>
+      </div>
+
+      <div class="step" data-step="faturacao">
+        <h2>Qual a faturação média mensal do negócio?</h2>
+        <div class="choices" data-radio-group="faturacao">
+          <label class="choice"><input type="radio" name="faturacao" value="Menos de 1.000€" required><span class="box"><span class="dot"></span>Menos de 1.000€</span></label>
+          <label class="choice"><input type="radio" name="faturacao" value="1.000€ – 3.000€"><span class="box"><span class="dot"></span>1.000€ – 3.000€</span></label>
+          <label class="choice"><input type="radio" name="faturacao" value="3.000€ – 7.000€"><span class="box"><span class="dot"></span>3.000€ – 7.000€</span></label>
+          <label class="choice"><input type="radio" name="faturacao" value="7.000€ – 15.000€"><span class="box"><span class="dot"></span>7.000€ – 15.000€</span></label>
+          <label class="choice"><input type="radio" name="faturacao" value="Mais de 15.000€"><span class="box"><span class="dot"></span>Mais de 15.000€</span></label>
+          <label class="choice"><input type="radio" name="faturacao" value="Ainda não faturo"><span class="box"><span class="dot"></span>Ainda não faturo / estou a começar</span></label>
+        </div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next disabled>Próximo</button>
+        </div>
+      </div>
+
+      <div class="step" data-step="orcamento">
+        <h2>Tens orçamento disponível para investir em publicidade paga (ex: 5€/dia)?</h2>
+        <div class="choices" data-radio-group="orcamento">
+          <label class="choice"><input type="radio" name="orcamento" value="Sim" required><span class="box"><span class="dot"></span>Sim</span></label>
+          <label class="choice"><input type="radio" name="orcamento" value="Não, para já"><span class="box"><span class="dot"></span>Não, para já</span></label>
+          <label class="choice"><input type="radio" name="orcamento" value="Não sei ainda"><span class="box"><span class="dot"></span>Não sei ainda</span></label>
+        </div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next disabled>Próximo</button>
+        </div>
+      </div>
+
+      <div class="step" data-step="dificuldade">
+        <h2>Qual é a tua maior dificuldade neste momento?</h2>
+        <div class="choices" data-radio-group="dificuldade">
+          <label class="choice"><input type="radio" name="dificuldade" value="Redes sociais" required><span class="box"><span class="dot"></span>Redes sociais</span></label>
+          <label class="choice"><input type="radio" name="dificuldade" value="Anúncios / tráfego pago"><span class="box"><span class="dot"></span>Anúncios / tráfego pago</span></label>
+          <label class="choice"><input type="radio" name="dificuldade" value="Site"><span class="box"><span class="dot"></span>Site</span></label>
+          <label class="choice"><input type="radio" name="dificuldade" value="Branding / identidade visual"><span class="box"><span class="dot"></span>Branding / identidade visual</span></label>
+          <label class="choice"><input type="radio" name="dificuldade" value="Ainda não sei"><span class="box"><span class="dot"></span>Ainda não sei</span></label>
+        </div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next disabled>Próximo</button>
+        </div>
+      </div>
+
+      <div class="step" data-step="quando">
+        <h2>Quando queres resolver isto?</h2>
+        <div class="choices" data-radio-group="quando">
+          <label class="choice"><input type="radio" name="quando" value="Esta semana" required><span class="box"><span class="dot"></span>Esta semana</span></label>
+          <label class="choice"><input type="radio" name="quando" value="Este mês"><span class="box"><span class="dot"></span>Este mês</span></label>
+          <label class="choice"><input type="radio" name="quando" value="Só a pesquisar por agora"><span class="box"><span class="dot"></span>Só a pesquisar por agora</span></label>
+        </div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="submit" class="btn-next" id="submitBtn" disabled>Enviar</button>
+        </div>
+        <div class="error-msg" id="errorMsg">Não foi possível enviar. Tenta novamente ou escreve-nos para <a href="mailto:geral@tunamarketing.pt" style="color:#a33;text-decoration:underline;">geral@tunamarketing.pt</a>.</div>
+      </div>
+
+      <div class="step" data-step="obrigado" data-final>
+        <div class="icon-ok">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        </div>
+        <h2>Recebemos os teus dados.</h2>
+        <p>A nossa equipa vai analisar o teu caso e entra em contacto brevemente para marcar uma conversa.</p>
+        <div class="final-actions">
+          <a class="btn-whatsapp" href="https://wa.me/351935827977?text=Ol%C3%A1%20Tuna%21%20Acabei%20de%20preencher%20o%20diagn%C3%B3stico%20no%20site" target="_blank" rel="noopener">Prefiro falar já no WhatsApp &rarr;</a>
+        </div>
+      </div>
+
+      <input type="hidden" name="utm_source" id="utm_source">
+      <input type="hidden" name="utm_medium" id="utm_medium">
+      <input type="hidden" name="utm_campaign" id="utm_campaign">
+      <input type="hidden" name="utm_content" id="utm_content">
+      <input type="hidden" name="utm_id" id="utm_id">
+      <input type="hidden" name="page_url" id="page_url">
+      <input type="hidden" name="_subject" value="Novo diagnóstico — site Tuna">
+    </form>
+  </div>
+
+  <p class="whatsapp-alt">Prefere falar diretamente? <a href="https://wa.me/351935827977?text=Ol%C3%A1%20Tuna%21%20Vim%20atrav%C3%A9s%20do%20site%20e%20gostava%20de%20mais%20informa%C3%A7%C3%B5es" target="_blank" rel="noopener">Manda-nos mensagem no WhatsApp</a>.</p>
+</div>
+
+<script>
+const FORM_ENDPOINT = "https://formspree.io/f/xvzenlaw";
+
+const steps = Array.from(document.querySelectorAll('.step'));
+let current = 0;
+
+function paramsToHidden(){
+  const p = new URLSearchParams(window.location.search);
+  ['utm_source','utm_medium','utm_campaign','utm_content','utm_id'].forEach(k => {
+    document.getElementById(k).value = p.get(k) || '';
+  });
+  document.getElementById('page_url').value = window.location.href;
+}
+paramsToHidden();
+
+function updateProgress(){
+  // intro and obrigado don't count toward the question progress
+  const questionSteps = steps.length - 2;
+  const idx = Math.max(0, Math.min(current - 1, questionSteps));
+  document.getElementById('progressBar').style.width = (idx / questionSteps * 100) + '%';
+}
+
+function showStep(i){
+  steps.forEach((s, idx) => s.classList.toggle('active', idx === i));
+  current = i;
+  updateProgress();
+  const activeInput = steps[i].querySelector('input[type=text],input[type=email],input[type=tel]');
+  if(activeInput) setTimeout(() => activeInput.focus(), 50);
+}
+
+function currentStepValid(){
+  const step = steps[current];
+  const required = step.querySelectorAll('[required]');
+  for(const el of required){
+    if(el.type === 'radio'){
+      const group = step.querySelectorAll(`input[name="${el.name}"]`);
+      if(![...group].some(r => r.checked)) return false;
+    } else if(!el.value.trim()){
+      return false;
+    } else if(el.type === 'email' && !el.value.includes('@')){
+      return false;
+    }
+  }
+  return true;
+}
+
+function goNext(){
+  if(current < steps.length - 1 && currentStepValid()) showStep(current + 1);
+}
+function goBack(){
+  if(current > 0) showStep(current - 1);
+}
+
+document.querySelectorAll('[data-next]').forEach(btn => btn.addEventListener('click', goNext));
+document.querySelectorAll('[data-back]').forEach(btn => btn.addEventListener('click', goBack));
+
+document.querySelectorAll('input[type=text],input[type=email],input[type=tel]').forEach(inp => {
+  inp.addEventListener('keydown', e => { if(e.key === 'Enter'){ e.preventDefault(); goNext(); }});
+});
+
+// enable/disable Next/Submit on radio steps as soon as a choice is made
+document.querySelectorAll('[data-radio-group]').forEach(group => {
+  group.addEventListener('change', () => {
+    const btn = group.closest('.step').querySelector('[data-next],#submitBtn');
+    if(btn) btn.disabled = false;
+  });
+});
+
+const form = document.getElementById('diagForm');
+const submitBtn = document.getElementById('submitBtn');
+const errorMsg = document.getElementById('errorMsg');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  if(!currentStepValid()) return;
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'A enviar…';
+  errorMsg.classList.remove('show');
+  try{
+    const res = await fetch(FORM_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: new FormData(form)
+    });
+    if(res.ok){
+      showStep(steps.length - 1);
+    } else {
+      throw new Error('submit failed');
+    }
+  } catch(err){
+    errorMsg.classList.add('show');
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Enviar';
+  }
+});
+
+showStep(0);
+</script>
+</body>
+</html>
