@@ -83,6 +83,21 @@
   .value h4{font-family:'Jost',sans-serif;font-weight:500;font-size:1.35rem;margin:0 0 12px;color:#103237;}
   .value p{margin:0;font-size:16px;line-height:1.65;color:#4a5d60;}
 
+  /* ---- Equipa ---- */
+  .equipa{background:#f7f5ef;padding:110px 40px;}
+  .equipa .intro{max-width:40rem;margin-bottom:56px;}
+  .equipa h2{font-family:'Jost',sans-serif;font-weight:300;font-size:clamp(2rem,3.8vw,3.3rem);line-height:1.08;letter-spacing:-.02em;margin:0;color:#103237;text-wrap:balance;}
+  .team-list{display:flex;flex-direction:column;gap:90px;}
+  .team-card{position:relative;background:#033b43;border-radius:28px;padding:64px 60px;min-height:460px;overflow:hidden;}
+  .team-text{position:relative;z-index:2;max-width:56%;}
+  .team-name{font-family:'Jost',sans-serif;font-weight:700;font-size:clamp(2.1rem,4.2vw,3.6rem);text-transform:uppercase;color:#f7f5ef;line-height:1.05;letter-spacing:-.01em;margin:0 0 26px;}
+  .team-text p{color:rgba(255,255,255,.82);font-size:15px;line-height:1.75;margin:0 0 18px;}
+  .team-text .team-quote{font-family:'Jost',sans-serif;font-weight:300;font-style:italic;font-size:1.05rem;line-height:1.6;color:#7fd4dc;margin:22px 0 0;border-left:2px solid rgba(127,212,220,.5);padding-left:18px;}
+  .team-photo{position:absolute;top:0;right:0;bottom:0;width:42%;object-fit:cover;}
+  .team-portfolio-wrap{text-align:center;margin-top:-28px;position:relative;z-index:3;}
+  .btn-portfolio{display:inline-block;background:#033b43;color:#fff;padding:16px 34px;border-radius:999px;font-size:14px;font-weight:600;letter-spacing:.02em;transition:background .25s;cursor:default;}
+  .btn-portfolio:hover{background:#00272c;}
+
   /* ---- Serviços ---- */
   .servicos{background:#f7f5ef;padding:110px 40px;position:relative;overflow:hidden;}
   .servicos .intro{max-width:40rem;margin-bottom:56px;}
@@ -148,13 +163,18 @@
   @media (max-width:900px){
     .header-inner{padding:16px 22px;}
     .nav{display:none;}
-    .sobre,.servicos,.depoimentos,.contato{padding:72px 22px;}
+    .sobre,.equipa,.servicos,.depoimentos,.contato{padding:72px 22px;}
     .sobre-grid{grid-template-columns:1fr;gap:32px;}
     .values-grid,.testi-grid{grid-template-columns:1fr;}
     .services-grid{grid-template-columns:1fr;gap:0;}
     .contato-grid{grid-template-columns:1fr;gap:36px;}
     .about-img{aspect-ratio:16/10;}
     .hero-inner{padding:90px 22px;}
+    .team-list{gap:56px;}
+    .team-card{padding:32px 24px 40px;overflow:hidden;}
+    .team-text{max-width:100%;}
+    .team-photo{position:static;width:100%;height:280px;border-radius:18px;margin-bottom:22px;}
+    .team-portfolio-wrap{margin-top:20px;}
   }
   @media (max-width:560px){
     .mv-grid{grid-template-columns:1fr;}
@@ -169,6 +189,7 @@
       <a href="#top" aria-label="Tuna — início"><img src="assets/tuna-logo-teal.png" alt="Tuna" style="height:28px;width:auto;"></a>
       <nav class="nav">
         <a href="#sobre" data-i="navAbout">Sobre</a>
+        <a href="#equipa" data-i="navTeam">Equipa</a>
         <a href="#servicos" data-i="navServices">Serviços</a>
         <a href="#depoimentos" data-i="navTesti">Depoimentos</a>
         <a href="#contato" data-i="navContact">Contato</a>
@@ -243,6 +264,17 @@
     </div>
   </section>
 
+  <!-- EQUIPA -->
+  <section id="equipa" class="equipa">
+    <div class="wrap">
+      <div class="intro reveal">
+        <div class="eyebrow" data-i="teamLabel">Equipa Tuna</div>
+        <h2 data-i="teamHeading">Conheça os nossos profissionais.</h2>
+      </div>
+      <div class="team-list" id="team"></div>
+    </div>
+  </section>
+
   <!-- SERVIÇOS -->
   <section id="servicos" class="servicos">
     <div class="wrap">
@@ -309,6 +341,7 @@
         <div class="footer-cols">
           <div class="footer-col">
             <a href="#sobre" data-i="navAbout">Sobre</a>
+            <a href="#equipa" data-i="navTeam">Equipa</a>
             <a href="#servicos" data-i="navServices">Serviços</a>
             <a href="#depoimentos" data-i="navTesti">Depoimentos</a>
             <a href="#contato" data-i="navContact">Contato</a>
@@ -333,7 +366,7 @@
 <script>
 const COPY = {
   pt: {
-    navAbout:'Sobre', navServices:'Serviços', navTesti:'Depoimentos', navContact:'Contato',
+    navAbout:'Sobre', navTeam:'Equipa', navServices:'Serviços', navTesti:'Depoimentos', navContact:'Contato',
     cta:'Vamos conversar',
     heroKicker:'Soluções em Marketing',
     heroTitle:'Somos parceiros do seu crescimento.',
@@ -347,6 +380,8 @@ const COPY = {
     visionLabel:'Visão',
     visionText:'Ser reconhecida como uma agência que transforma negócios através da colaboração, da inovação e da construção de relações duradouras.',
     valuesLabel:'Valores', valuesHeading:'O que nos move',
+    teamLabel:'Equipa Tuna',
+    teamHeading:'Conheça os nossos profissionais.',
     servicesLabel:'Serviços',
     servicesHeading:'Tudo o que a sua marca precisa para crescer.',
     servicesSub:'Soluções completas, pensadas para cada etapa da sua jornada.',
@@ -362,7 +397,7 @@ const COPY = {
     footerPrivacy:'Política de Privacidade'
   },
   en: {
-    navAbout:'About', navServices:'Services', navTesti:'Testimonials', navContact:'Contact',
+    navAbout:'About', navTeam:'Team', navServices:'Services', navTesti:'Testimonials', navContact:'Contact',
     cta:"Let's talk",
     heroKicker:'Marketing Solutions',
     heroTitle:'We are partners in your growth.',
@@ -376,6 +411,8 @@ const COPY = {
     visionLabel:'Vision',
     visionText:'To be recognised as an agency that transforms businesses through collaboration, innovation and lasting relationships.',
     valuesLabel:'Values', valuesHeading:'What drives us',
+    teamLabel:'Tuna Team',
+    teamHeading:'Meet the people behind Tuna.',
     servicesLabel:'Services',
     servicesHeading:'Everything your brand needs to grow.',
     servicesSub:'Complete solutions, designed for every stage of your journey.',
@@ -428,6 +465,51 @@ const VALUES = {
   ]
 };
 
+const TEAM = {
+  pt:[
+    {
+      name:'Mayara Batista',
+      bio:[
+        'Antes de fundar a Tuna, Mayara passou mais de 15 anos a liderar equipas comerciais em setores tão distintos como cosmética, retalho e serviços financeiros. Recrutando, formando e acompanhando de perto o desempenho de cada consultor e vendedor. Foi nesse terreno, fechando negócios de alto valor e respondendo por metas e KPIs todos os dias, que construiu a convicção que hoje orienta a Tuna: marketing só vale a pena quando se traduz em crescimento real para o cliente.',
+        'Essa disciplina comercial, aliada a formação em marketing, publicidade e relações públicas, é o que diferencia a forma como a Tuna pensa cada estratégia, sempre com um objetivo de negócio por trás de cada conteúdo, campanha ou parceria.'
+      ],
+      quote:'Aprendi a vender antes de aprender a comunicar. É essa ordem que trago para cada projeto: primeiro o resultado, depois a forma.',
+      photo:'assets/equipa-mayara.webp'
+    },
+    {
+      name:'Catarina Lacerda',
+      bio:[
+        'Co-fundadora da Tuna & designer, Catarina construiu a sua carreira entre marketing, design e comunicação digital, combinando formação internacional com experiência prática no desenvolvimento de estratégias para marcas e gestão de redes sociais. Estudou na The Graham School, em Ohio (EUA), fez intercâmbio em Nova Iorque, licenciada em Marketing e Publicidade pela UNIFACS. Atualmente, é mestranda em Design de Identidade Digital no Politécnico do Porto (IPP).',
+        'Ao longo de mais de oito anos como Social Media Specialist e Designer, e de dois anos dedicados à gestão de campanhas de influencer marketing, desenvolveu uma visão estratégica sobre posicionamento de marca, conteúdo e crescimento digital. Como criadora de conteúdo e influenciadora digital, reúne ainda uma comunidade de mais de 130 mil seguidores nas redes sociais.'
+      ],
+      photo:'assets/equipa-catarina.webp',
+      portfolio:true,
+      portfolioCta:'Portfólio da nossa designer'
+    }
+  ],
+  en:[
+    {
+      name:'Mayara Batista',
+      bio:[
+        'Before founding Tuna, Mayara spent over 15 years leading sales teams across industries as varied as cosmetics, retail and financial services — recruiting, training and closely tracking the performance of every consultant and salesperson. It was in that environment, closing high-value deals and being accountable for targets and KPIs every single day, that she built the conviction that now guides Tuna: marketing is only worth it when it translates into real growth for the client.',
+        'That commercial discipline, combined with a background in marketing, advertising and public relations, is what sets apart the way Tuna approaches every strategy — always with a business goal behind each piece of content, campaign or partnership.'
+      ],
+      quote:"I learned to sell before I learned to communicate. That's the order I bring to every project: results first, form second.",
+      photo:'assets/equipa-mayara.webp'
+    },
+    {
+      name:'Catarina Lacerda',
+      bio:[
+        "Co-founder of Tuna & designer, Catarina built her career across marketing, design and digital communication, combining international training with hands-on experience developing brand strategies and managing social media. She studied at The Graham School in Ohio (USA), did an exchange programme in New York, and holds a degree in Marketing and Advertising from UNIFACS. She is currently pursuing a master's in Digital Identity Design at the Polytechnic of Porto (IPP).",
+        'Over more than eight years as a Social Media Specialist and Designer, and two years dedicated to managing influencer marketing campaigns, she has developed a strategic outlook on brand positioning, content and digital growth. As a content creator and digital influencer, she also brings together a community of more than 130,000 followers across social media.'
+      ],
+      photo:'assets/equipa-catarina.webp',
+      portfolio:true,
+      portfolioCta:"Our designer's portfolio"
+    }
+  ]
+};
+
 const TESTI = {
   pt:[
     {quote:'Conheci o trabalho através de uma amiga, profissional da área de Odontologia, e achei muito elegante e distinto o modo como era apresentado. Solicitei o contacto e a partir daí vimos trabalhando na divulgação e comunicação desde 2023. Posso constatar que a experiência é muito positiva com a visibilidade do meu trabalho, a divulgação de temas e a interlocução, atingindo níveis de penetração nacional e internacional crescentes, o que autentica a realização do meu ofício de psicanalista.',author:'Drª Marli Piva',role:'Médica Psicanalista',initial:'M',photo:'assets/testi-marli.jpg'},
@@ -449,6 +531,19 @@ function renderLists(lang){
       <div class="num">${esc(v.num)}</div>
       <h4>${esc(v.name)}</h4>
       <p>${esc(v.desc)}</p>
+    </div>`).join('');
+
+  document.getElementById('team').innerHTML = TEAM[lang].map(m => `
+    <div class="team-item">
+      <div class="team-card reveal">
+        <div class="team-text">
+          <h3 class="team-name">${esc(m.name)}</h3>
+          ${m.bio.map(p => `<p>${esc(p)}</p>`).join('')}
+          ${m.quote ? `<p class="team-quote">&ldquo;${esc(m.quote)}&rdquo;</p>` : ''}
+        </div>
+        <img class="team-photo" src="${esc(m.photo)}" alt="${esc(m.name)}" loading="lazy" onerror="this.style.display='none'">
+      </div>
+      ${m.portfolio ? `<div class="team-portfolio-wrap"><a href="#" class="btn-portfolio" onclick="event.preventDefault();">${esc(m.portfolioCta)}</a></div>` : ''}
     </div>`).join('');
 
   document.getElementById('services').innerHTML = SERVICES[lang].map(s => `
