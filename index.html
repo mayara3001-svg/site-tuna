@@ -88,12 +88,12 @@
   .equipa .intro{max-width:40rem;margin-bottom:56px;}
   .equipa h2{font-family:'Jost',sans-serif;font-weight:300;font-size:clamp(2rem,3.8vw,3.3rem);line-height:1.08;letter-spacing:-.02em;margin:0;color:#103237;text-wrap:balance;}
   .team-list{display:flex;flex-direction:column;gap:90px;}
-  .team-card{position:relative;background:#033b43;border-radius:28px;padding:64px 60px;min-height:460px;overflow:hidden;}
+  .team-card{position:relative;background:#033b43;border-radius:28px;padding:64px 60px;min-height:460px;overflow:visible;}
   .team-text{position:relative;z-index:2;max-width:56%;}
   .team-name{font-family:'Jost',sans-serif;font-weight:700;font-size:clamp(2.1rem,4.2vw,3.6rem);text-transform:uppercase;color:#f7f5ef;line-height:1.05;letter-spacing:-.01em;margin:0 0 26px;}
   .team-text p{color:rgba(255,255,255,.82);font-size:15px;line-height:1.75;margin:0 0 18px;}
   .team-text .team-quote{font-family:'Jost',sans-serif;font-weight:300;font-style:italic;font-size:1.05rem;line-height:1.6;color:#7fd4dc;margin:22px 0 0;border-left:2px solid rgba(127,212,220,.5);padding-left:18px;}
-  .team-photo{position:absolute;top:0;right:0;bottom:0;width:42%;object-fit:cover;object-position:top center;}
+  .team-photo{position:absolute;right:0;bottom:0;width:44%;height:auto;display:block;filter:drop-shadow(0 24px 40px rgba(0,0,0,.35));}
   .team-portfolio-wrap{text-align:center;margin-top:-28px;position:relative;z-index:3;}
   .btn-portfolio{display:inline-block;background:#033b43;color:#fff;padding:16px 34px;border-radius:999px;font-size:14px;font-weight:600;letter-spacing:.02em;transition:background .25s;cursor:default;}
   .btn-portfolio:hover{background:#00272c;}
@@ -171,9 +171,9 @@
     .about-img{aspect-ratio:16/10;}
     .hero-inner{padding:90px 22px;}
     .team-list{gap:56px;}
-    .team-card{padding:32px 24px 40px;overflow:hidden;}
+    .team-card{padding:32px 24px 40px;overflow:visible;}
     .team-text{max-width:100%;}
-    .team-photo{position:static;width:100%;height:280px;border-radius:18px;margin-bottom:22px;}
+    .team-photo{position:static;width:64%;max-width:280px;height:auto;display:block;margin:0 auto 22px;filter:none;}
     .team-portfolio-wrap{margin-top:20px;}
   }
   @media (max-width:560px){
