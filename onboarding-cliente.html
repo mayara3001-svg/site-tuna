@@ -250,7 +250,22 @@
       <div class="step" data-step="s11">
         <div class="section-tag">Secção 3 · Público-alvo</div>
         <h2>Quem é o cliente ideal?</h2>
-        <div class="field"><textarea id="f_cliente_ideal" name="cliente_ideal" placeholder="Idade, localização, profissão, interesses..." required></textarea></div>
+        <div class="field">
+          <label class="field-label" for="f_cliente_ideal_idade">Idade média</label>
+          <input type="text" id="f_cliente_ideal_idade" name="cliente_ideal_idade" placeholder="Ex: 25 a 40 anos" required>
+        </div>
+        <div class="field">
+          <label class="field-label" for="f_cliente_ideal_localizacao">Localização</label>
+          <input type="text" id="f_cliente_ideal_localizacao" name="cliente_ideal_localizacao" placeholder="Ex: Porto e área metropolitana" required>
+        </div>
+        <div class="field">
+          <label class="field-label" for="f_cliente_ideal_profissao">Profissão / situação profissional</label>
+          <input type="text" id="f_cliente_ideal_profissao" name="cliente_ideal_profissao" placeholder="Ex: gestores de PME, profissionais liberais..." required>
+        </div>
+        <div class="field">
+          <label class="field-label" for="f_cliente_ideal_interesses">Interesses e hábitos</label>
+          <textarea id="f_cliente_ideal_interesses" name="cliente_ideal_interesses" placeholder="O que valorizam, onde costumam comprar, como decidem..." required></textarea>
+        </div>
         <div class="actions">
           <button type="button" class="btn-back" data-back>Anterior</button>
           <button type="button" class="btn-next" data-next>Próximo</button>
@@ -404,6 +419,7 @@
           <label class="choice is-check"><input type="checkbox" name="servicos" value="Gestão de Mídia Paga (anúncios)"><span class="box"><span class="dot"></span>Gestão de Mídia Paga (anúncios)</span></label>
           <label class="choice is-check"><input type="checkbox" name="servicos" value="Criação de Conteúdo Estratégico"><span class="box"><span class="dot"></span>Criação de Conteúdo Estratégico</span></label>
           <label class="choice is-check"><input type="checkbox" name="servicos" value="Criação de Vídeos"><span class="box"><span class="dot"></span>Criação de Vídeos</span></label>
+          <label class="choice is-check"><input type="checkbox" name="servicos" value="Design e Identidade Visual"><span class="box"><span class="dot"></span>Design e Identidade Visual</span></label>
         </div>
         <div class="hint">As próximas perguntas ajustam-se consoante o que escolheres aqui.</div>
         <div class="actions">
@@ -510,6 +526,39 @@
         </div>
       </div>
 
+      <!-- ═══ EXTRA — DESIGN E IDENTIDADE VISUAL (condicional) ═══ -->
+      <div class="step" data-step="sd1" data-pillar="design">
+        <div class="section-tag">Design e identidade visual</div>
+        <h2>Que peças de identidade visual precisam agora?</h2>
+        <div class="choices is-checkbox" data-checkbox-group="design_pecas" data-required>
+          <label class="choice is-check"><input type="checkbox" name="design_pecas" value="Logótipo"><span class="box"><span class="dot"></span>Logótipo</span></label>
+          <label class="choice is-check"><input type="checkbox" name="design_pecas" value="Cartão de visita"><span class="box"><span class="dot"></span>Cartão de visita</span></label>
+          <label class="choice is-check"><input type="checkbox" name="design_pecas" value="Papel timbrado/assinatura de e-mail"><span class="box"><span class="dot"></span>Papel timbrado/assinatura de e-mail</span></label>
+          <label class="choice is-check"><input type="checkbox" name="design_pecas" value="Templates para redes sociais"><span class="box"><span class="dot"></span>Templates para redes sociais</span></label>
+          <label class="choice is-check"><input type="checkbox" name="design_pecas" value="Sinalética/PDV"><span class="box"><span class="dot"></span>Sinalética/PDV</span></label>
+          <label class="choice is-check"><input type="checkbox" name="design_pecas" value="Embalagens/etiquetas"><span class="box"><span class="dot"></span>Embalagens/etiquetas</span></label>
+          <label class="choice is-check"><input type="checkbox" name="design_pecas" value="Apresentação institucional"><span class="box"><span class="dot"></span>Apresentação institucional</span></label>
+        </div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next disabled>Próximo</button>
+        </div>
+      </div>
+
+      <div class="step" data-step="sd2" data-pillar="design">
+        <div class="section-tag">Design e identidade visual</div>
+        <h2>O logótipo é para criar de raiz ou para rever/atualizar o que já existe?</h2>
+        <div class="choices" data-radio-group="design_escopo">
+          <label class="choice"><input type="radio" name="design_escopo" value="Criar de raiz — ainda não temos nada" required><span class="box"><span class="dot"></span>Criar de raiz — ainda não temos nada</span></label>
+          <label class="choice"><input type="radio" name="design_escopo" value="Rever e atualizar o que já existe"><span class="box"><span class="dot"></span>Rever e atualizar o que já existe</span></label>
+          <label class="choice"><input type="radio" name="design_escopo" value="Ainda não sei"><span class="box"><span class="dot"></span>Ainda não sei</span></label>
+        </div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next disabled>Próximo</button>
+        </div>
+      </div>
+
       <!-- ═══ SECÇÃO 7 — CONTEÚDO E APROVAÇÃO ═══ -->
       <div class="step" data-step="s31">
         <div class="section-tag">Secção 7 · Conteúdo e aprovação</div>
@@ -606,7 +655,8 @@ const PILLAR_MAP = {
   "Gestão de Redes Sociais": "redes",
   "Gestão de Mídia Paga (anúncios)": "ads",
   "Criação de Conteúdo Estratégico": "conteudo",
-  "Criação de Vídeos": "video"
+  "Criação de Vídeos": "video",
+  "Design e Identidade Visual": "design"
 };
 
 document.getElementById('page_url').value = window.location.href;
