@@ -108,9 +108,10 @@
         <div class="eyebrow">Briefing de onboarding</div>
         <h1 class="intro-title">Bem-vindo à Tuna. Vamos conhecer o teu negócio a fundo.</h1>
         <p class="intro-lead">Este briefing é o ponto de partida do nosso trabalho juntos — as respostas alimentam diretamente a estratégia que vamos construir para ti. Demora entre 10 a 15 minutos.</p>
-        <p class="intro-meta">Podes gravar e continuar depois. Se alguma pergunta não se aplicar ao teu negócio, passa à frente.</p>
-        <div class="actions" style="justify-content:flex-end;">
-          <button type="button" class="btn-next" data-next>Começar</button>
+        <p class="intro-meta">Podes fechar esta página a meio e continuar depois, no mesmo dispositivo e browser. Se alguma pergunta não se aplicar ao teu negócio, passa à frente.</p>
+        <div class="actions" style="justify-content:flex-end;flex-direction:column;align-items:flex-end;gap:10px;">
+          <button type="button" class="btn-next" id="startBtn">Começar</button>
+          <a href="#" id="restartLink" style="display:none;font-size:13px;color:#8a9b9d;text-decoration:underline;">Começar do zero</a>
         </div>
       </div>
 
@@ -720,15 +721,100 @@ function goNext(){
   const vis = computeVisibleSteps();
   const idx = vis.indexOf(currentStepEl);
   if(idx > -1 && idx < vis.length - 1) showStep(vis[idx + 1]);
+  saveDraft();
 }
 function goBack(){
   const vis = computeVisibleSteps();
   const idx = vis.indexOf(currentStepEl);
   if(idx > 0) showStep(vis[idx - 1]);
+  saveDraft();
 }
 
 document.querySelectorAll('[data-next]').forEach(btn => btn.addEventListener('click', goNext));
 document.querySelectorAll('[data-back]').forEach(btn => btn.addEventListener('click', goBack));
+
+// ── Gravar e continuar depois (localStorage, mesmo browser/dispositivo) ──
+const DRAFT_KEY = 'tuna_onboarding_draft_v1';
+const formEl = document.getElementById('onboardingForm');
+
+function serializeForm(){
+  const data = {};
+  formEl.querySelectorAll('input[type=text],input[type=email],input[type=tel],textarea').forEach(el => {
+    if(el.value) data[el.name] = el.value;
+  });
+  formEl.querySelectorAll('input[type=radio]:checked').forEach(el => { data[el.name] = el.value; });
+  const checkboxNames = new Set(Array.from(formEl.querySelectorAll('input[type=checkbox]')).map(el => el.name));
+  checkboxNames.forEach(name => {
+    const checked = Array.from(formEl.querySelectorAll(`input[type=checkbox][name="${name}"]:checked`)).map(el => el.value);
+    if(checked.length) data[name] = checked;
+  });
+  return data;
+}
+
+function applyDraftFields(fields){
+  Object.keys(fields).forEach(name => {
+    const value = fields[name];
+    const els = formEl.querySelectorAll(`[name="${name}"]`);
+    if(!els.length) return;
+    const first = els[0];
+    if(first.type === 'checkbox'){
+      const values = Array.isArray(value) ? value : [value];
+      els.forEach(el => { el.checked = values.includes(el.value); });
+    } else if(first.type === 'radio'){
+      els.forEach(el => { el.checked = (el.value === value); });
+    } else {
+      first.value = value;
+    }
+  });
+}
+
+function saveDraft(){
+  if(currentStepEl.dataset.step === 'obrigado') return;
+  try{
+    localStorage.setItem(DRAFT_KEY, JSON.stringify({ step: currentStepEl.dataset.step, fields: serializeForm() }));
+  }catch(e){}
+}
+
+function loadDraft(){
+  try{
+    const raw = localStorage.getItem(DRAFT_KEY);
+    return raw ? JSON.parse(raw) : null;
+  }catch(e){ return null; }
+}
+
+function clearDraft(){
+  try{ localStorage.removeItem(DRAFT_KEY); }catch(e){}
+}
+
+formEl.addEventListener('input', saveDraft);
+formEl.addEventListener('change', saveDraft);
+
+const draft = loadDraft();
+const startBtn = document.getElementById('startBtn');
+const restartLink = document.getElementById('restartLink');
+
+if(draft && draft.fields && Object.keys(draft.fields).length){
+  applyDraftFields(draft.fields);
+  startBtn.textContent = 'Continuar de onde ficaste';
+  restartLink.style.display = 'inline';
+}
+
+startBtn.addEventListener('click', () => {
+  if(draft && draft.fields && Object.keys(draft.fields).length){
+    const vis = computeVisibleSteps();
+    const target = vis.find(s => s.dataset.step === draft.step) || vis[1];
+    showStep(target);
+  } else {
+    goNext();
+  }
+});
+
+restartLink.addEventListener('click', (e) => {
+  e.preventDefault();
+  clearDraft();
+  formEl.reset();
+  location.reload();
+});
 
 document.querySelectorAll('input[type=text],input[type=email],input[type=tel]').forEach(inp => {
   inp.addEventListener('keydown', e => { if(e.key === 'Enter'){ e.preventDefault(); goNext(); }});
@@ -758,6 +844,7 @@ form.addEventListener('submit', async (e) => {
       body: new FormData(form)
     });
     if(res.ok){
+      clearDraft();
       showStep(document.querySelector('[data-final]'));
     } else {
       throw new Error('submit failed');
