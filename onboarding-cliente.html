@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Briefing de Onboarding · Tuna — Agência de Marketing Digital</title>
+<meta name="description" content="Formulário de onboarding para novos clientes da Tuna — o ponto de partida para conhecermos o teu negócio antes de começarmos a trabalhar.">
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:'Hanken Grotesk',sans-serif;color:#14282b;background:#f7f5ef;min-height:100vh;}
+  a{text-decoration:none;color:inherit;}
+  img{display:block;}
+
+  .top{display:flex;justify-content:center;padding:28px 22px 0;}
+  .top img{height:30px;width:auto;}
+
+  .shell{max-width:640px;margin:0 auto;padding:36px 22px 80px;}
+
+  .progress{height:4px;background:rgba(0,128,144,.14);border-radius:999px;overflow:hidden;margin-bottom:36px;}
+  .progress-bar{height:100%;background:#008090;border-radius:999px;transition:width .35s ease;width:0%;}
+
+  .card{background:#fff;border:1px solid rgba(0,128,144,.14);border-radius:26px;padding:44px 38px;box-shadow:0 26px 60px -34px rgba(0,128,144,.35);}
+
+  .step{display:none;}
+  .step.active{display:block;animation:fadeUp .4s ease both;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
+
+  .eyebrow{font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:#008090;margin-bottom:14px;}
+  h1.intro-title{font-family:'Jost',sans-serif;font-weight:300;font-size:clamp(1.8rem,4vw,2.4rem);line-height:1.15;letter-spacing:-.01em;margin:0 0 16px;color:#103237;}
+  .intro-lead{font-size:17px;line-height:1.65;color:#4a5d60;margin:0 0 8px;}
+  .intro-meta{font-size:14px;color:#7a8b8d;margin:0 0 32px;}
+
+  .section-tag{font-family:'Hanken Grotesk',sans-serif;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#8a9b9d;margin:0 0 10px;}
+  .step h2{font-family:'Jost',sans-serif;font-weight:400;font-size:1.5rem;line-height:1.3;margin:0 0 26px;color:#103237;}
+
+  label.field-label{display:block;font-size:13px;font-weight:600;letter-spacing:.04em;color:#0b6b76;text-transform:uppercase;margin:0 0 8px;}
+  input[type=text],input[type=email],input[type=tel],textarea{width:100%;font-family:'Hanken Grotesk',sans-serif;font-size:17px;padding:15px 18px;border-radius:14px;border:1.5px solid rgba(0,128,144,.22);background:#f7f5ef;color:#103237;transition:border-color .2s,background .2s;}
+  textarea{min-height:120px;resize:vertical;line-height:1.5;}
+  input:focus,textarea:focus{outline:none;border-color:#008090;background:#fff;}
+  .field{margin-bottom:20px;}
+  .hint{font-size:13px;color:#7a8b8d;margin-top:8px;}
+
+  input[type=file]{width:100%;font-family:'Hanken Grotesk',sans-serif;font-size:14px;padding:14px;border-radius:14px;border:1.5px dashed rgba(0,128,144,.35);background:#f7f5ef;color:#4a5d60;}
+
+  .choices{display:flex;flex-direction:column;gap:12px;}
+  .choice{display:block;position:relative;}
+  .choice input{position:absolute;opacity:0;pointer-events:none;}
+  .choice .box{display:flex;align-items:center;gap:14px;padding:16px 20px;border-radius:16px;border:1.5px solid rgba(0,128,144,.2);background:#f7f5ef;cursor:pointer;transition:border-color .2s,background .2s;font-size:16px;color:#2a4448;}
+  .choice .dot{flex:none;width:18px;height:18px;border-radius:50%;border:1.5px solid rgba(0,128,144,.4);display:flex;align-items:center;justify-content:center;}
+  .choice .dot::after{content:'';width:9px;height:9px;border-radius:50%;background:#008090;opacity:0;transform:scale(.5);transition:opacity .15s,transform .15s;}
+  .choice input:checked + .box{border-color:#008090;background:#e7f5f6;}
+  .choice input:checked + .box .dot::after{opacity:1;transform:scale(1);}
+  .choice .box:hover{border-color:#008090;}
+
+  .choice.is-check .dot{border-radius:5px;}
+  .choice.is-check .dot::after{border-radius:2px;width:8px;height:8px;}
+
+  .actions{display:flex;justify-content:space-between;align-items:center;margin-top:32px;gap:16px;}
+  .btn-next{background:#008090;color:#fff;padding:15px 30px;border-radius:999px;font-size:15px;font-weight:600;border:none;cursor:pointer;font-family:inherit;transition:background .2s,transform .2s;}
+  .btn-next:hover{background:#00626f;transform:translateY(-1px);}
+  .btn-next:disabled{background:#a9c9cc;cursor:not-allowed;transform:none;}
+  .btn-back{background:none;border:none;color:#4a5d60;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;padding:10px;}
+  .btn-back:hover{color:#103237;}
+  .enter-hint{font-size:12px;color:#9caeb0;margin-top:14px;text-align:right;}
+  .optional-tag{font-size:12px;font-weight:400;color:#9caeb0;text-transform:none;letter-spacing:0;margin-left:8px;}
+
+  .note-box{background:#fdf6ea;border:1px solid #edd9a3;border-radius:14px;padding:16px 18px;font-size:13.5px;line-height:1.55;color:#7a5c1a;margin-bottom:22px;}
+  .note-box strong{color:#5c4413;}
+
+  .step[data-final] .icon-ok{width:56px;height:56px;border-radius:50%;background:#e7f5f6;display:flex;align-items:center;justify-content:center;margin:0 auto 22px;color:#008090;}
+  .step[data-final] h2{text-align:center;}
+  .step[data-final] p{text-align:center;font-size:16px;line-height:1.6;color:#4a5d60;}
+  .final-actions{display:flex;justify-content:center;margin-top:26px;}
+  .btn-whatsapp{display:inline-flex;align-items:center;gap:10px;background:#f7f5ef;border:1.5px solid rgba(0,128,144,.22);color:#103237;padding:13px 26px;border-radius:999px;font-size:14px;font-weight:600;}
+
+  .error-msg{display:none;background:#fdeeee;border:1px solid #f3c9c9;color:#a33;padding:14px 18px;border-radius:14px;font-size:14px;margin-top:18px;}
+  .error-msg.show{display:block;}
+
+  .whatsapp-alt{text-align:center;margin-top:24px;font-size:14px;color:#4a5d60;}
+  .whatsapp-alt a{color:#008090;font-weight:600;}
+
+  @media (max-width:560px){
+    .card{padding:32px 24px;}
+    .actions{flex-direction:column-reverse;align-items:stretch;}
+    .btn-next{width:100%;}
+    .btn-back{align-self:center;}
+  }
+</style>
+</head>
+<body>
+
+<div class="top">
+  <a href="/"><img src="assets/tuna-logo-teal.png" alt="Tuna"></a>
+</div>
+
+<div class="shell">
+  <div class="progress"><div class="progress-bar" id="progressBar"></div></div>
+
+  <div class="card">
+    <form id="onboardingForm">
+
+      <!-- ═══ INTRO ═══ -->
+      <div class="step active" data-step="intro">
+        <div class="eyebrow">Briefing de onboarding</div>
+        <h1 class="intro-title">Bem-vindo à Tuna. Vamos conhecer o teu negócio a fundo.</h1>
+        <p class="intro-lead">Este briefing é o ponto de partida do nosso trabalho juntos — as respostas alimentam diretamente a estratégia que vamos construir para ti. Demora entre 10 a 15 minutos.</p>
+        <p class="intro-meta">Podes gravar e continuar depois. Se alguma pergunta não se aplicar ao teu negócio, passa à frente.</p>
+        <div class="actions" style="justify-content:flex-end;">
+          <button type="button" class="btn-next" data-next>Começar</button>
+        </div>
+      </div>
+
+      <!-- ═══ SECÇÃO 1 — SOBRE O NEGÓCIO ═══ -->
+      <div class="step" data-step="s1">
+        <div class="section-tag">Secção 1 · Sobre o negócio</div>
+        <h2>Nome da empresa e website</h2>
+        <div class="field">
+          <label class="field-label" for="f_empresa_nome">Nome da empresa</label>
+          <input type="text" id="f_empresa_nome" name="empresa_nome" required>
+        </div>
+        <div class="field">
+          <label class="field-label" for="f_empresa_site">Website <span class="optional-tag">(se existir)</span></label>
+          <input type="text" id="f_empresa_site" name="empresa_site" placeholder="www.exemplo.pt">
+        </div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next>Próximo</button>
+        </div>
+      </div>
+
+      <div class="step" data-step="s2">
+        <div class="section-tag">Secção 1 · Sobre o negócio</div>
+        <h2>Numa frase, o que é que a empresa faz?</h2>
+        <div class="field"><textarea id="f_empresa_o_que_faz" name="empresa_o_que_faz" required></textarea></div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next>Próximo</button>
+        </div>
+      </div>
+
+      <div class="step" data-step="s3">
+        <div class="section-tag">Secção 1 · Sobre o negócio</div>
+        <h2>Há quanto tempo a empresa está no mercado?</h2>
+        <div class="choices" data-radio-group="empresa_tempo_mercado">
+          <label class="choice"><input type="radio" name="empresa_tempo_mercado" value="Menos de 1 ano" required><span class="box"><span class="dot"></span>Menos de 1 ano</span></label>
+          <label class="choice"><input type="radio" name="empresa_tempo_mercado" value="1 a 3 anos"><span class="box"><span class="dot"></span>1 a 3 anos</span></label>
+          <label class="choice"><input type="radio" name="empresa_tempo_mercado" value="3 a 10 anos"><span class="box"><span class="dot"></span>3 a 10 anos</span></label>
+          <label class="choice"><input type="radio" name="empresa_tempo_mercado" value="Mais de 10 anos"><span class="box"><span class="dot"></span>Mais de 10 anos</span></label>
+        </div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next disabled>Próximo</button>
+        </div>
+      </div>
+
+      <div class="step" data-step="s4">
+        <div class="section-tag">Secção 1 · Sobre o negócio</div>
+        <h2>Quais são os 3 principais produtos ou serviços que vendem?</h2>
+        <div class="field"><textarea id="f_empresa_produtos_servicos" name="empresa_produtos_servicos" required></textarea></div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next>Próximo</button>
+        </div>
+      </div>
+
+      <div class="step" data-step="s5">
+        <div class="section-tag">Secção 1 · Sobre o negócio</div>
+        <h2>Quem é o responsável pela decisão final sobre marketing?</h2>
+        <div class="field">
+          <label class="field-label" for="f_decisor_nome">Nome</label>
+          <input type="text" id="f_decisor_nome" name="decisor_nome" required>
+        </div>
+        <div class="field">
+          <label class="field-label" for="f_decisor_email">E-mail</label>
+          <input type="email" id="f_decisor_email" name="decisor_email" required>
+        </div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next>Próximo</button>
+        </div>
+      </div>
+
+      <div class="step" data-step="s6">
+        <div class="section-tag">Secção 1 · Sobre o negócio</div>
+        <h2>Quem mais deve estar envolvido nas aprovações do dia a dia?</h2>
+        <div class="field">
+          <textarea id="f_aprovadores_dia_a_dia" name="aprovadores_dia_a_dia" placeholder="Nome, e-mail e função — uma pessoa por linha"></textarea>
+          <div class="hint">Opcional, se for só a pessoa da pergunta anterior.</div>
+        </div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next>Próximo</button>
+        </div>
+      </div>
+
+      <!-- ═══ SECÇÃO 2 — OBJETIVOS ═══ -->
+      <div class="step" data-step="s7">
+        <div class="section-tag">Secção 2 · Objetivos</div>
+        <h2>O que espera alcançar com este trabalho nos próximos 3 meses?</h2>
+        <div class="field"><textarea id="f_objetivo_3_meses" name="objetivo_3_meses" required></textarea></div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next>Próximo</button>
+        </div>
+      </div>
+
+      <div class="step" data-step="s8">
+        <div class="section-tag">Secção 2 · Objetivos</div>
+        <h2>E nos próximos 12 meses?</h2>
+        <div class="field"><textarea id="f_objetivo_12_meses" name="objetivo_12_meses" required></textarea></div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next>Próximo</button>
+        </div>
+      </div>
+
+      <div class="step" data-step="s9">
+        <div class="section-tag">Secção 2 · Objetivos</div>
+        <h2>Qual é, hoje, o maior obstáculo ao crescimento do negócio?</h2>
+        <div class="field"><textarea id="f_maior_obstaculo" name="maior_obstaculo" required></textarea></div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next>Próximo</button>
+        </div>
+      </div>
+
+      <div class="step" data-step="s10">
+        <div class="section-tag">Secção 2 · Objetivos</div>
+        <h2>Como é que vai saber que este trabalho está a resultar?</h2>
+        <div class="choices is-checkbox" data-checkbox-group="medir_sucesso" data-required>
+          <label class="choice is-check"><input type="checkbox" name="medir_sucesso" value="Mais vendas"><span class="box"><span class="dot"></span>Mais vendas</span></label>
+          <label class="choice is-check"><input type="checkbox" name="medir_sucesso" value="Mais leads/contactos"><span class="box"><span class="dot"></span>Mais leads/contactos</span></label>
+          <label class="choice is-check"><input type="checkbox" name="medir_sucesso" value="Mais reconhecimento de marca"><span class="box"><span class="dot"></span>Mais reconhecimento de marca</span></label>
+          <label class="choice is-check"><input type="checkbox" name="medir_sucesso" value="Mais seguidores e engagement"><span class="box"><span class="dot"></span>Mais seguidores e engagement</span></label>
+        </div>
+        <div class="field" style="margin-top:14px;">
+          <input type="text" id="f_medir_sucesso_outro" name="medir_sucesso_outro" placeholder="Outro (opcional)">
+        </div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next disabled>Próximo</button>
+        </div>
+      </div>
+
+      <!-- ═══ SECÇÃO 3 — PÚBLICO-ALVO ═══ -->
+      <div class="step" data-step="s11">
+        <div class="section-tag">Secção 3 · Público-alvo</div>
+        <h2>Quem é o cliente ideal?</h2>
+        <div class="field"><textarea id="f_cliente_ideal" name="cliente_ideal" placeholder="Idade, localização, profissão, interesses..." required></textarea></div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next>Próximo</button>
+        </div>
+      </div>
+
+      <div class="step" data-step="s12">
+        <div class="section-tag">Secção 3 · Público-alvo</div>
+        <h2>Que problema é que o vosso produto/serviço resolve para essa pessoa?</h2>
+        <div class="field"><textarea id="f_problema_resolvido" name="problema_resolvido" required></textarea></div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next>Próximo</button>
+        </div>
+      </div>
+
+      <div class="step" data-step="s13">
+        <div class="section-tag">Secção 3 · Público-alvo</div>
+        <h2>Já têm persona ou segmentação definida?</h2>
+        <div class="choices" data-radio-group="persona_definida">
+          <label class="choice"><input type="radio" name="persona_definida" value="Sim" required><span class="box"><span class="dot"></span>Sim</span></label>
+          <label class="choice"><input type="radio" name="persona_definida" value="Não"><span class="box"><span class="dot"></span>Não</span></label>
+          <label class="choice"><input type="radio" name="persona_definida" value="Parcialmente"><span class="box"><span class="dot"></span>Parcialmente</span></label>
+        </div>
+        <div class="field" style="margin-top:14px;">
+          <label class="field-label" for="f_persona_notas">Notas <span class="optional-tag">(opcional)</span></label>
+          <textarea id="f_persona_notas" name="persona_notas"></textarea>
+        </div>
+        <div class="field">
+          <label class="field-label" for="f_persona_arquivo">Anexar documento <span class="optional-tag">(opcional)</span></label>
+          <input type="file" id="f_persona_arquivo" name="persona_arquivo">
+        </div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next disabled>Próximo</button>
+        </div>
+      </div>
+
+      <div class="step" data-step="s14">
+        <div class="section-tag">Secção 3 · Público-alvo</div>
+        <h2>Onde é que esse cliente ideal costuma passar tempo online?</h2>
+        <div class="choices is-checkbox" data-checkbox-group="onde_passa_tempo_online" data-required>
+          <label class="choice is-check"><input type="checkbox" name="onde_passa_tempo_online" value="Instagram"><span class="box"><span class="dot"></span>Instagram</span></label>
+          <label class="choice is-check"><input type="checkbox" name="onde_passa_tempo_online" value="Facebook"><span class="box"><span class="dot"></span>Facebook</span></label>
+          <label class="choice is-check"><input type="checkbox" name="onde_passa_tempo_online" value="LinkedIn"><span class="box"><span class="dot"></span>LinkedIn</span></label>
+          <label class="choice is-check"><input type="checkbox" name="onde_passa_tempo_online" value="TikTok"><span class="box"><span class="dot"></span>TikTok</span></label>
+          <label class="choice is-check"><input type="checkbox" name="onde_passa_tempo_online" value="Google (pesquisa)"><span class="box"><span class="dot"></span>Google (pesquisa)</span></label>
+        </div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next disabled>Próximo</button>
+        </div>
+      </div>
+
+      <!-- ═══ SECÇÃO 4 — MARCA E IDENTIDADE ═══ -->
+      <div class="step" data-step="s15">
+        <div class="section-tag">Secção 4 · Marca e identidade</div>
+        <h2>Têm manual de marca, logótipo em alta resolução e paleta de cores definidos?</h2>
+        <div class="choices" data-radio-group="marca_identidade">
+          <label class="choice"><input type="radio" name="marca_identidade" value="Sim" required><span class="box"><span class="dot"></span>Sim</span></label>
+          <label class="choice"><input type="radio" name="marca_identidade" value="Não"><span class="box"><span class="dot"></span>Não</span></label>
+          <label class="choice"><input type="radio" name="marca_identidade" value="Parcialmente"><span class="box"><span class="dot"></span>Parcialmente</span></label>
+        </div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next disabled>Próximo</button>
+        </div>
+      </div>
+
+      <div class="step" data-step="s16">
+        <div class="section-tag">Secção 4 · Marca e identidade</div>
+        <h2>Anexa aqui os ficheiros da marca</h2>
+        <div class="field">
+          <label class="field-label" for="f_marca_arquivos">Logótipo, manual de marca ou paleta <span class="optional-tag">(opcional)</span></label>
+          <input type="file" id="f_marca_arquivos" name="marca_arquivos">
+          <div class="hint">Se ainda não tiveres nada, passa à frente — ou partilha depois uma pasta com acesso.</div>
+        </div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next>Próximo</button>
+        </div>
+      </div>
+
+      <div class="step" data-step="s17">
+        <div class="section-tag">Secção 4 · Marca e identidade</div>
+        <h2>Como descreverias o tom de voz da marca?</h2>
+        <div class="field"><input type="text" id="f_marca_tom_de_voz" name="marca_tom_de_voz" placeholder="Ex: divertido, sério, técnico, próximo, premium..." required></div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next>Próximo</button>
+        </div>
+      </div>
+
+      <div class="step" data-step="s18">
+        <div class="section-tag">Secção 4 · Marca e identidade</div>
+        <h2>Há alguma coisa que a marca nunca deva fazer ou dizer?</h2>
+        <div class="field"><textarea id="f_marca_linhas_vermelhas" name="marca_linhas_vermelhas" placeholder="Linhas vermelhas — opcional"></textarea></div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next>Próximo</button>
+        </div>
+      </div>
+
+      <div class="step" data-step="s19">
+        <div class="section-tag">Secção 4 · Marca e identidade</div>
+        <h2>Existem referências visuais ou concorrentes cujo estilo admiram?</h2>
+        <div class="field"><textarea id="f_marca_referencias" name="marca_referencias"></textarea></div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next>Próximo</button>
+        </div>
+      </div>
+
+      <!-- ═══ SECÇÃO 5 — CONCORRÊNCIA E MERCADO ═══ -->
+      <div class="step" data-step="s20">
+        <div class="section-tag">Secção 5 · Concorrência e mercado</div>
+        <h2>Quem são os 3 principais concorrentes?</h2>
+        <div class="field"><textarea id="f_concorrentes_principais" name="concorrentes_principais" required></textarea></div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next>Próximo</button>
+        </div>
+      </div>
+
+      <div class="step" data-step="s21">
+        <div class="section-tag">Secção 5 · Concorrência e mercado</div>
+        <h2>O que é que acham que eles fazem bem?</h2>
+        <div class="field"><textarea id="f_concorrentes_bem" name="concorrentes_bem"></textarea></div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next>Próximo</button>
+        </div>
+      </div>
+
+      <div class="step" data-step="s22">
+        <div class="section-tag">Secção 5 · Concorrência e mercado</div>
+        <h2>O que é que acham que fazem mal, ou onde veem uma oportunidade?</h2>
+        <div class="field"><textarea id="f_concorrentes_oportunidade" name="concorrentes_oportunidade"></textarea></div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next>Próximo</button>
+        </div>
+      </div>
+
+      <!-- ═══ SERVIÇOS CONTRATADOS (gate para secções condicionais) ═══ -->
+      <div class="step" data-step="servicos">
+        <div class="section-tag">O teu plano com a Tuna</div>
+        <h2>Que serviços fazem parte do teu plano com a Tuna?</h2>
+        <div class="choices is-checkbox" data-checkbox-group="servicos" data-required>
+          <label class="choice is-check"><input type="checkbox" name="servicos" value="Gestão de Redes Sociais"><span class="box"><span class="dot"></span>Gestão de Redes Sociais</span></label>
+          <label class="choice is-check"><input type="checkbox" name="servicos" value="Gestão de Mídia Paga (anúncios)"><span class="box"><span class="dot"></span>Gestão de Mídia Paga (anúncios)</span></label>
+          <label class="choice is-check"><input type="checkbox" name="servicos" value="Criação de Conteúdo Estratégico"><span class="box"><span class="dot"></span>Criação de Conteúdo Estratégico</span></label>
+          <label class="choice is-check"><input type="checkbox" name="servicos" value="Criação de Vídeos"><span class="box"><span class="dot"></span>Criação de Vídeos</span></label>
+        </div>
+        <div class="hint">As próximas perguntas ajustam-se consoante o que escolheres aqui.</div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next disabled>Próximo</button>
+        </div>
+      </div>
+
+      <!-- ═══ SECÇÃO 6 — ACESSOS E LOGÍSTICA ═══ -->
+      <div class="step" data-step="s24" data-pillar-any="redes,ads">
+        <div class="section-tag">Secção 6 · Acessos e logística</div>
+        <h2>Já têm conta profissional (Business) no Instagram e Facebook?</h2>
+        <div class="choices" data-radio-group="acessos_redes_business">
+          <label class="choice"><input type="radio" name="acessos_redes_business" value="Sim" required><span class="box"><span class="dot"></span>Sim</span></label>
+          <label class="choice"><input type="radio" name="acessos_redes_business" value="Não"><span class="box"><span class="dot"></span>Não</span></label>
+          <label class="choice"><input type="radio" name="acessos_redes_business" value="Não sei"><span class="box"><span class="dot"></span>Não sei</span></label>
+        </div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next disabled>Próximo</button>
+        </div>
+      </div>
+
+      <div class="step" data-step="s25" data-pillar="ads">
+        <div class="section-tag">Secção 6 · Acessos e logística</div>
+        <h2>Já têm Google Ads e/ou Google Business Profile criados?</h2>
+        <div class="choices" data-radio-group="acessos_google">
+          <label class="choice"><input type="radio" name="acessos_google" value="Sim" required><span class="box"><span class="dot"></span>Sim</span></label>
+          <label class="choice"><input type="radio" name="acessos_google" value="Não"><span class="box"><span class="dot"></span>Não</span></label>
+          <label class="choice"><input type="radio" name="acessos_google" value="Não sei"><span class="box"><span class="dot"></span>Não sei</span></label>
+        </div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next disabled>Próximo</button>
+        </div>
+      </div>
+
+      <div class="step" data-step="s26">
+        <div class="section-tag">Secção 6 · Acessos e logística</div>
+        <h2>Quem vai disponibilizar os acessos necessários?</h2>
+        <div class="note-box"><strong>Nunca escrevas passwords aqui.</strong> Basta o nome e o e-mail de quem vai tratar disto — combinamos depois, diretamente, a forma mais segura de partilhar os acessos (por exemplo, adicionar-nos como parceiros de negócio nas plataformas, sem partilhar credenciais).</div>
+        <div class="field">
+          <label class="field-label" for="f_acessos_responsavel_nome">Nome</label>
+          <input type="text" id="f_acessos_responsavel_nome" name="acessos_responsavel_nome" required>
+        </div>
+        <div class="field">
+          <label class="field-label" for="f_acessos_responsavel_email">E-mail</label>
+          <input type="email" id="f_acessos_responsavel_email" name="acessos_responsavel_email" required>
+        </div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next>Próximo</button>
+        </div>
+      </div>
+
+      <div class="step" data-step="s27">
+        <div class="section-tag">Secção 6 · Acessos e logística</div>
+        <h2>Já usam alguma ferramenta que queiram manter?</h2>
+        <div class="field"><textarea id="f_ferramentas_atuais" name="ferramentas_atuais" placeholder="Ex: CRM, email marketing, agendador de posts... (opcional)"></textarea></div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next>Próximo</button>
+        </div>
+      </div>
+
+      <!-- ═══ EXTRA — CONTEÚDO (condicional) ═══ -->
+      <div class="step" data-step="s28" data-pillar="conteudo">
+        <div class="section-tag">Conteúdo estratégico</div>
+        <h2>Que temas ou assuntos gostavam de ver abordados no conteúdo?</h2>
+        <div class="field"><textarea id="f_conteudo_temas" name="conteudo_temas" required></textarea></div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next>Próximo</button>
+        </div>
+      </div>
+
+      <!-- ═══ EXTRA — VÍDEO (condicional) ═══ -->
+      <div class="step" data-step="s29" data-pillar="video">
+        <div class="section-tag">Criação de vídeos</div>
+        <h2>Que tipo de vídeos precisam?</h2>
+        <div class="choices is-checkbox" data-checkbox-group="video_tipo" data-required>
+          <label class="choice is-check"><input type="checkbox" name="video_tipo" value="Institucionais/apresentação"><span class="box"><span class="dot"></span>Institucionais/apresentação</span></label>
+          <label class="choice is-check"><input type="checkbox" name="video_tipo" value="Reels para redes sociais"><span class="box"><span class="dot"></span>Reels para redes sociais</span></label>
+          <label class="choice is-check"><input type="checkbox" name="video_tipo" value="Depoimentos de clientes"><span class="box"><span class="dot"></span>Depoimentos de clientes</span></label>
+          <label class="choice is-check"><input type="checkbox" name="video_tipo" value="Publicitários/anúncios"><span class="box"><span class="dot"></span>Publicitários/anúncios</span></label>
+        </div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next disabled>Próximo</button>
+        </div>
+      </div>
+
+      <div class="step" data-step="s30" data-pillar="video">
+        <div class="section-tag">Criação de vídeos</div>
+        <h2>Têm espaço/equipamento disponível para filmagens, ou a equipa deve levar tudo?</h2>
+        <div class="choices" data-radio-group="video_logistica">
+          <label class="choice"><input type="radio" name="video_logistica" value="Temos espaço próprio para filmar" required><span class="box"><span class="dot"></span>Temos espaço próprio para filmar</span></label>
+          <label class="choice"><input type="radio" name="video_logistica" value="Precisamos que a equipa traga tudo"><span class="box"><span class="dot"></span>Precisamos que a equipa traga tudo</span></label>
+          <label class="choice"><input type="radio" name="video_logistica" value="Ainda não sabemos, vamos combinar"><span class="box"><span class="dot"></span>Ainda não sabemos, vamos combinar</span></label>
+        </div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next disabled>Próximo</button>
+        </div>
+      </div>
+
+      <!-- ═══ SECÇÃO 7 — CONTEÚDO E APROVAÇÃO ═══ -->
+      <div class="step" data-step="s31">
+        <div class="section-tag">Secção 7 · Conteúdo e aprovação</div>
+        <h2>Têm banco de fotos/vídeos próprios disponível?</h2>
+        <div class="choices" data-radio-group="banco_materiais">
+          <label class="choice"><input type="radio" name="banco_materiais" value="Sim" required><span class="box"><span class="dot"></span>Sim</span></label>
+          <label class="choice"><input type="radio" name="banco_materiais" value="Não"><span class="box"><span class="dot"></span>Não</span></label>
+          <label class="choice"><input type="radio" name="banco_materiais" value="Parcialmente"><span class="box"><span class="dot"></span>Parcialmente</span></label>
+        </div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next disabled>Próximo</button>
+        </div>
+      </div>
+
+      <div class="step" data-step="s32">
+        <div class="section-tag">Secção 7 · Conteúdo e aprovação</div>
+        <h2>Quem aprova o conteúdo antes de publicar?</h2>
+        <div class="field">
+          <label class="field-label" for="f_aprovador_conteudo_nome">Nome</label>
+          <input type="text" id="f_aprovador_conteudo_nome" name="aprovador_conteudo_nome" required>
+        </div>
+        <div class="field">
+          <label class="field-label" for="f_aprovador_conteudo_email">E-mail</label>
+          <input type="email" id="f_aprovador_conteudo_email" name="aprovador_conteudo_email" required>
+        </div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next>Próximo</button>
+        </div>
+      </div>
+
+      <div class="step" data-step="s33">
+        <div class="section-tag">Secção 7 · Conteúdo e aprovação</div>
+        <h2>Qual o prazo médio que costumam levar a dar feedback ou aprovação?</h2>
+        <div class="choices" data-radio-group="prazo_feedback">
+          <label class="choice"><input type="radio" name="prazo_feedback" value="Até 24h" required><span class="box"><span class="dot"></span>Até 24h</span></label>
+          <label class="choice"><input type="radio" name="prazo_feedback" value="24h a 48h"><span class="box"><span class="dot"></span>24h a 48h</span></label>
+          <label class="choice"><input type="radio" name="prazo_feedback" value="Cerca de 1 semana"><span class="box"><span class="dot"></span>Cerca de 1 semana</span></label>
+          <label class="choice"><input type="radio" name="prazo_feedback" value="Mais de 1 semana"><span class="box"><span class="dot"></span>Mais de 1 semana</span></label>
+        </div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next disabled>Próximo</button>
+        </div>
+      </div>
+
+      <!-- ═══ SECÇÃO 8 — OUTROS ═══ -->
+      <div class="step" data-step="s35">
+        <div class="section-tag">Secção 8 · Outros</div>
+        <h2>Há algum evento, lançamento ou data importante nos próximos meses que devamos ter em conta?</h2>
+        <div class="field"><textarea id="f_eventos_datas_importantes" name="eventos_datas_importantes"></textarea></div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next>Próximo</button>
+        </div>
+      </div>
+
+      <div class="step" data-step="s36">
+        <div class="section-tag">Secção 8 · Outros</div>
+        <h2>Alguma coisa que não perguntámos e que ache importante partilhar?</h2>
+        <div class="field"><textarea id="f_observacoes_finais" name="observacoes_finais"></textarea></div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="submit" class="btn-next" id="submitBtn">Enviar</button>
+        </div>
+        <div class="error-msg" id="errorMsg">Não foi possível enviar. Tenta novamente ou escreve-nos para <a href="mailto:geral@tunamarketing.pt" style="color:#a33;text-decoration:underline;">geral@tunamarketing.pt</a>.</div>
+      </div>
+
+      <!-- ═══ FINAL ═══ -->
+      <div class="step" data-step="obrigado" data-final>
+        <div class="icon-ok">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        </div>
+        <h2>Recebemos o teu briefing.</h2>
+        <p>Estamos na fase de Onboarding — a seguir avançamos para a Estratégia. A equipa da Tuna analisa tudo e entra em contacto para marcar a reunião de alinhamento.</p>
+        <div class="final-actions">
+          <a class="btn-whatsapp" href="https://wa.me/351935827977?text=Ol%C3%A1%20Tuna%21%20Acabei%20de%20preencher%20o%20briefing%20de%20onboarding" target="_blank" rel="noopener">Falar já no WhatsApp &rarr;</a>
+        </div>
+      </div>
+
+      <input type="hidden" name="page_url" id="page_url">
+      <input type="hidden" name="_subject" value="Novo briefing de onboarding — cliente Tuna">
+    </form>
+  </div>
+
+  <p class="whatsapp-alt">Preferes preencher isto numa chamada connosco? <a href="https://wa.me/351935827977?text=Ol%C3%A1%20Tuna%21%20Prefiro%20fazer%20o%20briefing%20numa%20chamada" target="_blank" rel="noopener">Manda-nos mensagem no WhatsApp</a>.</p>
+</div>
+
+<script>
+const FORM_ENDPOINT = "https://formspree.io/f/xvzenlaw";
+
+const PILLAR_MAP = {
+  "Gestão de Redes Sociais": "redes",
+  "Gestão de Mídia Paga (anúncios)": "ads",
+  "Criação de Conteúdo Estratégico": "conteudo",
+  "Criação de Vídeos": "video"
+};
+
+document.getElementById('page_url').value = window.location.href;
+
+const allSteps = Array.from(document.querySelectorAll('.step'));
+let currentStepEl = allSteps[0];
+
+function selectedPillars(){
+  return Array.from(document.querySelectorAll('input[name="servicos"]:checked')).map(el => PILLAR_MAP[el.value]).filter(Boolean);
+}
+
+function stepIsVisible(step, pillars){
+  if(step.dataset.pillar) return pillars.includes(step.dataset.pillar);
+  if(step.dataset.pillarAny) return step.dataset.pillarAny.split(',').some(p => pillars.includes(p));
+  return true;
+}
+
+function computeVisibleSteps(){
+  const pillars = selectedPillars();
+  return allSteps.filter(s => stepIsVisible(s, pillars));
+}
+
+function updateProgress(){
+  const vis = computeVisibleSteps();
+  const questionSteps = vis.length - 2; // exclude intro and obrigado
+  const idx = vis.indexOf(currentStepEl) - 1;
+  const clamped = Math.max(0, Math.min(idx, questionSteps));
+  document.getElementById('progressBar').style.width = (clamped / questionSteps * 100) + '%';
+}
+
+function showStep(el){
+  allSteps.forEach(s => s.classList.toggle('active', s === el));
+  currentStepEl = el;
+  updateProgress();
+  const activeInput = el.querySelector('input[type=text],input[type=email],input[type=tel],textarea');
+  if(activeInput) setTimeout(() => activeInput.focus(), 50);
+}
+
+function currentStepValid(step){
+  const requiredInputs = step.querySelectorAll('input[type=text][required],input[type=email][required],input[type=tel][required],textarea[required]');
+  for(const el of requiredInputs){
+    if(!el.value.trim()) return false;
+    if(el.type === 'email' && !el.value.includes('@')) return false;
+  }
+  const radioGroups = new Set(Array.from(step.querySelectorAll('input[type=radio][required]')).map(el => el.name));
+  for(const name of radioGroups){
+    const group = step.querySelectorAll(`input[name="${name}"]`);
+    if(![...group].some(r => r.checked)) return false;
+  }
+  const checkboxGroups = step.querySelectorAll('[data-checkbox-group][data-required]');
+  for(const group of checkboxGroups){
+    const name = group.dataset.checkboxGroup;
+    const checked = step.querySelectorAll(`input[type=checkbox][name="${name}"]:checked`);
+    if(checked.length === 0) return false;
+  }
+  return true;
+}
+
+function goNext(){
+  if(!currentStepValid(currentStepEl)) return;
+  const vis = computeVisibleSteps();
+  const idx = vis.indexOf(currentStepEl);
+  if(idx > -1 && idx < vis.length - 1) showStep(vis[idx + 1]);
+}
+function goBack(){
+  const vis = computeVisibleSteps();
+  const idx = vis.indexOf(currentStepEl);
+  if(idx > 0) showStep(vis[idx - 1]);
+}
+
+document.querySelectorAll('[data-next]').forEach(btn => btn.addEventListener('click', goNext));
+document.querySelectorAll('[data-back]').forEach(btn => btn.addEventListener('click', goBack));
+
+document.querySelectorAll('input[type=text],input[type=email],input[type=tel]').forEach(inp => {
+  inp.addEventListener('keydown', e => { if(e.key === 'Enter'){ e.preventDefault(); goNext(); }});
+});
+
+document.querySelectorAll('[data-radio-group],[data-checkbox-group]').forEach(group => {
+  group.addEventListener('change', () => {
+    const btn = group.closest('.step').querySelector('[data-next]');
+    if(btn) btn.disabled = false;
+  });
+});
+
+const form = document.getElementById('onboardingForm');
+const submitBtn = document.getElementById('submitBtn');
+const errorMsg = document.getElementById('errorMsg');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  if(!currentStepValid(currentStepEl)) return;
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'A enviar…';
+  errorMsg.classList.remove('show');
+  try{
+    const res = await fetch(FORM_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: new FormData(form)
+    });
+    if(res.ok){
+      showStep(document.querySelector('[data-final]'));
+    } else {
+      throw new Error('submit failed');
+    }
+  } catch(err){
+    errorMsg.classList.add('show');
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Enviar';
+  }
+});
+
+showStep(allSteps[0]);
+</script>
+</body>
+</html>
