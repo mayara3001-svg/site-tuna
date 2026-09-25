@@ -189,7 +189,6 @@
       <a href="#top" aria-label="Tuna — início"><img src="assets/tuna-logo-teal.png" alt="Tuna" style="height:28px;width:auto;"></a>
       <nav class="nav">
         <a href="#sobre" data-i="navAbout">Sobre</a>
-        <a href="#equipa" data-i="navTeam">Equipa</a>
         <a href="#servicos" data-i="navServices">Serviços</a>
         <a href="#depoimentos" data-i="navTesti">Depoimentos</a>
         <a href="#contato" data-i="navContact">Contato</a>
@@ -264,16 +263,8 @@
     </div>
   </section>
 
-  <!-- EQUIPA -->
-  <section id="equipa" class="equipa">
-    <div class="wrap">
-      <div class="intro reveal">
-        <div class="eyebrow" data-i="teamLabel">Equipa Tuna</div>
-        <h2 data-i="teamHeading">Conheça os nossos profissionais.</h2>
-      </div>
-      <div class="team-list" id="team"></div>
-    </div>
-  </section>
+  <!-- EQUIPA — secção retirada em 25/09/2026, a repor quando houver equipa real para apresentar.
+       O CSS (.equipa/.team-*) e as etiquetas teamLabel/teamHeading foram mantidos para facilitar a reposição. -->
 
   <!-- SERVIÇOS -->
   <section id="servicos" class="servicos">
@@ -341,7 +332,6 @@
         <div class="footer-cols">
           <div class="footer-col">
             <a href="#sobre" data-i="navAbout">Sobre</a>
-            <a href="#equipa" data-i="navTeam">Equipa</a>
             <a href="#servicos" data-i="navServices">Serviços</a>
             <a href="#depoimentos" data-i="navTesti">Depoimentos</a>
             <a href="#contato" data-i="navContact">Contato</a>
@@ -465,50 +455,7 @@ const VALUES = {
   ]
 };
 
-const TEAM = {
-  pt:[
-    {
-      name:'Mayara Batista',
-      bio:[
-        'Antes de fundar a Tuna, Mayara passou mais de 15 anos a liderar equipas comerciais em setores tão distintos como cosmética, retalho e serviços financeiros. Recrutando, formando e acompanhando de perto o desempenho de cada consultor e vendedor. Foi nesse terreno, fechando negócios de alto valor e respondendo por metas e KPIs todos os dias, que construiu a convicção que hoje orienta a Tuna: marketing só vale a pena quando se traduz em crescimento real para o cliente.',
-        'Essa disciplina comercial, aliada a formação em marketing, publicidade e relações públicas, é o que diferencia a forma como a Tuna pensa cada estratégia, sempre com um objetivo de negócio por trás de cada conteúdo, campanha ou parceria.'
-      ],
-      quote:'Aprendi a vender antes de aprender a comunicar. É essa ordem que trago para cada projeto: primeiro o resultado, depois a forma.',
-      photo:'assets/equipa-mayara.webp'
-    },
-    {
-      name:'Catarina Lacerda',
-      bio:[
-        'Co-fundadora da Tuna & designer, Catarina construiu a sua carreira entre marketing, design e comunicação digital, combinando formação internacional com experiência prática no desenvolvimento de estratégias para marcas e gestão de redes sociais. Estudou na The Graham School, em Ohio (EUA), fez intercâmbio em Nova Iorque, licenciada em Marketing e Publicidade pela UNIFACS. Atualmente, é mestranda em Design de Identidade Digital no Politécnico do Porto (IPP).',
-        'Ao longo de mais de oito anos como Social Media Specialist e Designer, e de dois anos dedicados à gestão de campanhas de influencer marketing, desenvolveu uma visão estratégica sobre posicionamento de marca, conteúdo e crescimento digital. Como criadora de conteúdo e influenciadora digital, reúne ainda uma comunidade de mais de 130 mil seguidores nas redes sociais.'
-      ],
-      photo:'assets/equipa-catarina.webp',
-      portfolio:true,
-      portfolioCta:'Portfólio da nossa designer'
-    }
-  ],
-  en:[
-    {
-      name:'Mayara Batista',
-      bio:[
-        'Before founding Tuna, Mayara spent over 15 years leading sales teams across industries as varied as cosmetics, retail and financial services — recruiting, training and closely tracking the performance of every consultant and salesperson. It was in that environment, closing high-value deals and being accountable for targets and KPIs every single day, that she built the conviction that now guides Tuna: marketing is only worth it when it translates into real growth for the client.',
-        'That commercial discipline, combined with a background in marketing, advertising and public relations, is what sets apart the way Tuna approaches every strategy — always with a business goal behind each piece of content, campaign or partnership.'
-      ],
-      quote:"I learned to sell before I learned to communicate. That's the order I bring to every project: results first, form second.",
-      photo:'assets/equipa-mayara.webp'
-    },
-    {
-      name:'Catarina Lacerda',
-      bio:[
-        "Co-founder of Tuna & designer, Catarina built her career across marketing, design and digital communication, combining international training with hands-on experience developing brand strategies and managing social media. She studied at The Graham School in Ohio (USA), did an exchange programme in New York, and holds a degree in Marketing and Advertising from UNIFACS. She is currently pursuing a master's in Digital Identity Design at the Polytechnic of Porto (IPP).",
-        'Over more than eight years as a Social Media Specialist and Designer, and two years dedicated to managing influencer marketing campaigns, she has developed a strategic outlook on brand positioning, content and digital growth. As a content creator and digital influencer, she also brings together a community of more than 130,000 followers across social media.'
-      ],
-      photo:'assets/equipa-catarina.webp',
-      portfolio:true,
-      portfolioCta:"Our designer's portfolio"
-    }
-  ]
-};
+// TEAM — removido em 25/09/2026 com a secção Equipa. Reposição: recriar este array e a secção #equipa.
 
 const TESTI = {
   pt:[
@@ -531,19 +478,6 @@ function renderLists(lang){
       <div class="num">${esc(v.num)}</div>
       <h4>${esc(v.name)}</h4>
       <p>${esc(v.desc)}</p>
-    </div>`).join('');
-
-  document.getElementById('team').innerHTML = TEAM[lang].map(m => `
-    <div class="team-item">
-      <div class="team-card reveal">
-        <div class="team-text">
-          <h3 class="team-name">${esc(m.name)}</h3>
-          ${m.bio.map(p => `<p>${esc(p)}</p>`).join('')}
-          ${m.quote ? `<p class="team-quote">&ldquo;${esc(m.quote)}&rdquo;</p>` : ''}
-        </div>
-        <img class="team-photo" src="${esc(m.photo)}" alt="${esc(m.name)}" loading="lazy" onerror="this.style.display='none'">
-      </div>
-      ${m.portfolio ? `<div class="team-portfolio-wrap"><a href="#" class="btn-portfolio" onclick="event.preventDefault();">${esc(m.portfolioCta)}</a></div>` : ''}
     </div>`).join('');
 
   document.getElementById('services').innerHTML = SERVICES[lang].map(s => `
