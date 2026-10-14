@@ -7,12 +7,12 @@
 <meta name="description" content="A Tuna é uma agência de marketing digital no Porto. Desenvolvemos soluções que geram crescimento real, atuando como parceiros estratégicos em cada etapa.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
-  body{margin:0;font-family:'Hanken Grotesk',sans-serif;color:#14282b;background:#fff;overflow-x:clip;position:relative;}
-  ::selection{background:#008090;color:#fff;}
+  body{margin:0;font-family:'Poppins',sans-serif;color:#262626;background:#fff;overflow-x:clip;position:relative;}
+  ::selection{background:#037f8c;color:#fff;}
   a{text-decoration:none;color:inherit;}
   img{display:block;}
 
@@ -31,31 +31,31 @@
   .wrap{max-width:1240px;margin:0 auto;}
 
   /* ---- Header ---- */
-  .site-header{position:sticky;top:0;z-index:50;background:rgba(247,245,239,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(0,128,144,.12);}
+  .site-header{position:sticky;top:0;z-index:50;background:rgba(255,250,239,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(3,127,140,.12);}
   .header-inner{max-width:1240px;margin:0 auto;padding:18px 40px;display:flex;align-items:center;justify-content:space-between;gap:24px;}
-  .nav{display:flex;align-items:center;gap:34px;font-size:15px;font-weight:500;color:#2a4448;}
+  .nav{display:flex;align-items:center;gap:34px;font-size:15px;font-weight:500;color:#262626;}
   .nav a{transition:color .2s;}
-  .nav a:hover{color:#008090;}
+  .nav a:hover{color:#037f8c;}
   .header-actions{display:flex;align-items:center;gap:16px;}
-  .lang-switch{display:flex;align-items:center;background:rgba(0,128,144,.08);border-radius:999px;padding:3px;}
-  .lang-switch button{padding:6px 15px;border-radius:999px;cursor:pointer;font-size:13px;font-weight:600;letter-spacing:.04em;border:none;transition:all .25s;font-family:'Hanken Grotesk',sans-serif;background:transparent;color:#0b6b76;}
-  .lang-switch button.active{background:#008090;color:#fff;}
-  .btn-cta{background:#008090;color:#fff;padding:11px 22px;border-radius:999px;font-size:14px;font-weight:600;transition:background .25s,transform .25s;}
-  .btn-cta:hover{background:#00626f;transform:translateY(-1px);}
+  .lang-switch{display:flex;align-items:center;background:rgba(3,127,140,.08);border-radius:999px;padding:3px;}
+  .lang-switch button{padding:6px 15px;border-radius:999px;cursor:pointer;font-size:13px;font-weight:600;letter-spacing:.04em;border:none;transition:all .25s;font-family:'Poppins',sans-serif;background:transparent;color:#024059;}
+  .lang-switch button.active{background:#037f8c;color:#fff;}
+  .btn-cta{background:#037f8c;color:#fff;padding:11px 22px;border-radius:999px;font-size:14px;font-weight:600;transition:background .25s,transform .25s;}
+  .btn-cta:hover{background:#024059;transform:translateY(-1px);}
 
   /* ---- Hero ---- */
-  .hero{background:#033b43;position:relative;overflow:hidden;min-height:90vh;display:flex;align-items:center;}
+  .hero{background:#024059;position:relative;overflow:hidden;min-height:90vh;display:flex;align-items:center;}
   .hero-waves{position:absolute;inset:0;opacity:.16;pointer-events:none;}
   .hero-waves .row{position:absolute;left:0;width:200%;}
   .hero-waves .row1{top:30%;animation:drift 26s linear infinite;}
   .hero-waves .row2{top:58%;animation:drift 34s linear infinite;}
   .hero-inner{position:relative;max-width:1000px;margin:0 auto;padding:110px 40px;text-align:center;animation:revUp 1s ease both;}
   .hero-logo{height:42px;width:auto;margin:0 auto 38px;opacity:.95;}
-  .kicker{font-size:12px;letter-spacing:.24em;text-transform:uppercase;font-weight:600;color:#7fd4dc;margin-bottom:28px;}
-  .hero h1{font-family:'Jost',sans-serif;font-weight:300;font-size:clamp(2.8rem,6vw,5.6rem);line-height:1.03;letter-spacing:-.02em;margin:0 0 30px;color:#fff;text-wrap:balance;}
+  .kicker{font-size:12px;letter-spacing:.24em;text-transform:uppercase;font-weight:600;color:#1fbfbf;margin-bottom:28px;}
+  .hero h1{font-family:'Poppins',sans-serif;font-weight:300;font-size:clamp(2.8rem,6vw,5.6rem);line-height:1.03;letter-spacing:-.02em;margin:0 0 30px;color:#fff;text-wrap:balance;}
   .hero p.sub{font-size:20px;line-height:1.65;color:rgba(255,255,255,.78);max-width:36rem;margin:0 auto 40px;}
   .hero-ctas{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
-  .btn-light{background:#fff;color:#033b43;padding:16px 34px;border-radius:999px;font-size:15px;font-weight:600;transition:transform .25s,box-shadow .25s;}
+  .btn-light{background:#ffc13a;color:#262626;padding:16px 34px;border-radius:999px;font-size:15px;font-weight:600;transition:transform .25s,box-shadow .25s;}
   .btn-light:hover{transform:translateY(-2px);box-shadow:0 16px 40px -12px rgba(0,0,0,.5);}
   .btn-ghost{border:1px solid rgba(255,255,255,.4);color:#fff;padding:16px 34px;border-radius:999px;font-size:15px;font-weight:600;transition:all .25s;}
   .btn-ghost:hover{background:rgba(255,255,255,.12);}
@@ -63,67 +63,67 @@
   /* ---- Sobre ---- */
   .sobre{background:#fff;padding:110px 40px;}
   .sobre-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:60px;align-items:start;}
-  .eyebrow{font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:#008090;margin-bottom:20px;}
-  .sobre h2{font-family:'Jost',sans-serif;font-weight:300;font-size:clamp(2rem,3.6vw,3.2rem);line-height:1.08;letter-spacing:-.02em;margin:0;color:#103237;text-wrap:balance;}
-  .sobre-img{margin-top:40px;border-radius:20px;overflow:hidden;aspect-ratio:16/11;background:#e3eded;box-shadow:0 26px 60px -32px rgba(0,128,144,.45);}
+  .eyebrow{font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:#037f8c;margin-bottom:20px;}
+  .sobre h2{font-family:'Poppins',sans-serif;font-weight:300;font-size:clamp(2rem,3.6vw,3.2rem);line-height:1.08;letter-spacing:-.02em;margin:0;color:#024059;text-wrap:balance;}
+  .sobre-img{margin-top:40px;border-radius:20px;overflow:hidden;aspect-ratio:16/11;background:#f2f2f2;box-shadow:0 26px 60px -32px rgba(3,127,140,.45);}
   .sobre-img img{width:100%;height:100%;object-fit:cover;display:block;}
-  .sobre-text{font-size:19px;line-height:1.75;color:#4a5d60;margin:0 0 44px;max-width:40rem;}
-  .mv-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(0,128,144,.16);border:1px solid rgba(0,128,144,.16);border-radius:20px;overflow:hidden;}
-  .mv-cell{background:#f7f5ef;padding:34px 32px;}
+  .sobre-text{font-size:19px;line-height:1.75;color:rgba(38,38,38,.72);margin:0 0 44px;max-width:40rem;}
+  .mv-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(3,127,140,.16);border:1px solid rgba(3,127,140,.16);border-radius:20px;overflow:hidden;}
+  .mv-cell{background:#fffaef;padding:34px 32px;}
   .mv-cell .eyebrow{margin-bottom:14px;letter-spacing:.18em;}
-  .mv-cell p{margin:0;font-size:16px;line-height:1.65;color:#2a4448;}
-  .about-img{margin-top:64px;border-radius:24px;overflow:hidden;aspect-ratio:16/6;background:#e3eded;box-shadow:0 30px 70px -34px rgba(0,128,144,.4);}
+  .mv-cell p{margin:0;font-size:16px;line-height:1.65;color:#262626;}
+  .about-img{margin-top:64px;border-radius:24px;overflow:hidden;aspect-ratio:16/6;background:#f2f2f2;box-shadow:0 30px 70px -34px rgba(3,127,140,.4);}
   .about-img img{width:100%;height:100%;object-fit:cover;}
   .values-head{display:flex;align-items:baseline;gap:18px;margin-bottom:36px;}
   .values-head .eyebrow{margin-bottom:0;}
-  .values-head h3{font-family:'Jost',sans-serif;font-weight:300;font-size:clamp(1.5rem,2.6vw,2.2rem);margin:0;color:#103237;}
+  .values-head h3{font-family:'Poppins',sans-serif;font-weight:300;font-size:clamp(1.5rem,2.6vw,2.2rem);margin:0;color:#024059;}
   .values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
-  .value{border-top:2px solid #008090;padding:26px 4px 0;}
-  .value .num{font-family:'Jost',sans-serif;font-weight:300;font-size:2.4rem;color:rgba(0,128,144,.45);line-height:1;margin-bottom:16px;}
-  .value h4{font-family:'Jost',sans-serif;font-weight:500;font-size:1.35rem;margin:0 0 12px;color:#103237;}
-  .value p{margin:0;font-size:16px;line-height:1.65;color:#4a5d60;}
+  .value{border-top:2px solid #037f8c;padding:26px 4px 0;}
+  .value .num{font-family:'Poppins',sans-serif;font-weight:300;font-size:2.4rem;color:rgba(3,127,140,.45);line-height:1;margin-bottom:16px;}
+  .value h4{font-family:'Poppins',sans-serif;font-weight:500;font-size:1.35rem;margin:0 0 12px;color:#024059;}
+  .value p{margin:0;font-size:16px;line-height:1.65;color:rgba(38,38,38,.72);}
 
   /* ---- Equipa ---- */
-  .equipa{background:#f7f5ef;padding:110px 40px;}
+  .equipa{background:#fffaef;padding:110px 40px;}
   .equipa .intro{max-width:40rem;margin-bottom:56px;}
-  .equipa h2{font-family:'Jost',sans-serif;font-weight:300;font-size:clamp(2rem,3.8vw,3.3rem);line-height:1.08;letter-spacing:-.02em;margin:0;color:#103237;text-wrap:balance;}
+  .equipa h2{font-family:'Poppins',sans-serif;font-weight:300;font-size:clamp(2rem,3.8vw,3.3rem);line-height:1.08;letter-spacing:-.02em;margin:0;color:#024059;text-wrap:balance;}
   .team-list{display:flex;flex-direction:column;gap:150px;}
-  .team-card{position:relative;background:#033b43;border-radius:28px;padding:64px 60px;min-height:460px;overflow:visible;}
+  .team-card{position:relative;background:#024059;border-radius:28px;padding:64px 60px;min-height:460px;overflow:visible;}
   .team-text{position:relative;z-index:2;max-width:56%;}
-  .team-name{font-family:'Jost',sans-serif;font-weight:700;font-size:clamp(2.1rem,4.2vw,3.6rem);text-transform:uppercase;color:#f7f5ef;line-height:1.05;letter-spacing:-.01em;margin:0 0 26px;}
+  .team-name{font-family:'Poppins',sans-serif;font-weight:700;font-size:clamp(2.1rem,4.2vw,3.6rem);text-transform:uppercase;color:#fffaef;line-height:1.05;letter-spacing:-.01em;margin:0 0 26px;}
   .team-text p{color:rgba(255,255,255,.82);font-size:15px;line-height:1.75;margin:0 0 18px;}
-  .team-text .team-quote{font-family:'Jost',sans-serif;font-weight:300;font-style:italic;font-size:1.05rem;line-height:1.6;color:#7fd4dc;margin:22px 0 0;border-left:2px solid rgba(127,212,220,.5);padding-left:18px;}
+  .team-text .team-quote{font-family:'Poppins',sans-serif;font-weight:300;font-style:italic;font-size:1.05rem;line-height:1.6;color:#1fbfbf;margin:22px 0 0;border-left:2px solid rgba(31,191,191,.5);padding-left:18px;}
   .team-photo{position:absolute;right:0;bottom:0;width:44%;height:auto;max-height:calc(100% + 110px);display:block;border-radius:0 0 28px 0;filter:drop-shadow(0 24px 40px rgba(0,0,0,.35));}
   .team-portfolio-wrap{text-align:center;margin-top:-28px;position:relative;z-index:3;}
-  .btn-portfolio{display:inline-block;background:#033b43;color:#fff;padding:16px 34px;border-radius:999px;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;transition:background .25s;cursor:default;}
-  .btn-portfolio:hover{background:#00272c;}
+  .btn-portfolio{display:inline-block;background:#024059;color:#fff;padding:16px 34px;border-radius:999px;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;transition:background .25s;cursor:default;}
+  .btn-portfolio:hover{background:#037f8c;}
 
   /* ---- Serviços ---- */
-  .servicos{background:#f7f5ef;padding:110px 40px;position:relative;overflow:hidden;}
+  .servicos{background:#fffaef;padding:110px 40px;position:relative;overflow:hidden;}
   .servicos .intro{max-width:40rem;margin-bottom:56px;}
-  .servicos h2{font-family:'Jost',sans-serif;font-weight:300;font-size:clamp(2rem,3.8vw,3.3rem);line-height:1.08;letter-spacing:-.02em;margin:0 0 18px;color:#103237;text-wrap:balance;}
-  .servicos .intro p{font-size:18px;line-height:1.6;color:#4a5d60;margin:0;}
+  .servicos h2{font-family:'Poppins',sans-serif;font-weight:300;font-size:clamp(2rem,3.8vw,3.3rem);line-height:1.08;letter-spacing:-.02em;margin:0 0 18px;color:#024059;text-wrap:balance;}
+  .servicos .intro p{font-size:18px;line-height:1.6;color:rgba(38,38,38,.72);margin:0;}
   .services-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 56px;}
-  .service{display:flex;gap:22px;padding:30px 0;border-top:1px solid rgba(0,128,144,.18);}
-  .service .num{font-family:'Jost',sans-serif;font-weight:400;font-size:.95rem;color:#008090;padding-top:6px;letter-spacing:.05em;}
-  .service .thumb{flex:none;width:88px;height:88px;border-radius:16px;overflow:hidden;background:#e3eded;box-shadow:0 10px 24px -14px rgba(0,128,144,.45);}
+  .service{display:flex;gap:22px;padding:30px 0;border-top:1px solid rgba(3,127,140,.18);}
+  .service .num{font-family:'Poppins',sans-serif;font-weight:400;font-size:.95rem;color:#037f8c;padding-top:6px;letter-spacing:.05em;}
+  .service .thumb{flex:none;width:88px;height:88px;border-radius:16px;overflow:hidden;background:#f2f2f2;box-shadow:0 10px 24px -14px rgba(3,127,140,.45);}
   .service .thumb img{width:100%;height:100%;object-fit:cover;display:block;}
-  .service h3{font-family:'Jost',sans-serif;font-weight:500;font-size:1.45rem;margin:0 0 10px;color:#103237;}
-  .service p{margin:0;font-size:16px;line-height:1.6;color:#4a5d60;max-width:26rem;}
+  .service h3{font-family:'Poppins',sans-serif;font-weight:500;font-size:1.45rem;margin:0 0 10px;color:#024059;}
+  .service p{margin:0;font-size:16px;line-height:1.6;color:rgba(38,38,38,.72);max-width:26rem;}
 
   /* ---- Depoimentos ---- */
-  .depoimentos{background:#033b43;padding:110px 40px;position:relative;overflow:hidden;}
+  .depoimentos{background:#024059;padding:110px 40px;position:relative;overflow:hidden;}
   .depoimentos .wave{position:absolute;top:0;left:0;width:200%;opacity:.1;animation:drift 30s linear infinite;pointer-events:none;}
   .depoimentos .inner{position:relative;}
   .depoimentos .intro{max-width:38rem;margin-bottom:56px;}
-  .depoimentos .eyebrow{color:#7fd4dc;}
-  .depoimentos h2{font-family:'Jost',sans-serif;font-weight:300;font-size:clamp(2rem,3.8vw,3.3rem);line-height:1.08;letter-spacing:-.02em;margin:0;color:#fff;text-wrap:balance;}
+  .depoimentos .eyebrow{color:#1fbfbf;}
+  .depoimentos h2{font-family:'Poppins',sans-serif;font-weight:300;font-size:clamp(2rem,3.8vw,3.3rem);line-height:1.08;letter-spacing:-.02em;margin:0;color:#fff;text-wrap:balance;}
   .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
   .testi{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:22px;padding:34px 30px;display:flex;flex-direction:column;}
-  .testi .mark{font-family:'Jost',sans-serif;font-weight:300;font-size:3rem;line-height:.6;color:#7fd4dc;margin-bottom:18px;height:24px;}
-  .testi .quote{font-family:'Jost',sans-serif;font-weight:300;font-size:1.3rem;line-height:1.5;color:#fff;margin:0 0 28px;flex:1;}
+  .testi .mark{font-family:'Poppins',sans-serif;font-weight:300;font-size:3rem;line-height:.6;color:#1fbfbf;margin-bottom:18px;height:24px;}
+  .testi .quote{font-family:'Poppins',sans-serif;font-weight:300;font-size:1.08rem;line-height:1.65;color:#fff;margin:0 0 28px;flex:1;}
   .testi .who{display:flex;align-items:center;gap:14px;padding-top:20px;border-top:1px solid rgba(255,255,255,.12);}
-  .testi .avatar{width:42px;height:42px;border-radius:50%;background:rgba(127,212,220,.18);display:flex;align-items:center;justify-content:center;font-family:'Jost',sans-serif;color:#7fd4dc;font-size:1.1rem;}
+  .testi .avatar{width:42px;height:42px;border-radius:50%;background:rgba(31,191,191,.18);display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;color:#1fbfbf;font-size:1.1rem;}
   .testi .avatar-photo{width:42px;height:42px;border-radius:50%;object-fit:cover;flex:none;}
   .testi .author{font-weight:600;font-size:15px;color:#fff;}
   .testi .role{font-size:13px;color:rgba(255,255,255,.6);}
@@ -131,26 +131,26 @@
   /* ---- Contato ---- */
   .contato{background:#fff;padding:110px 40px;}
   .contato-grid{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center;}
-  .contato h2{font-family:'Jost',sans-serif;font-weight:300;font-size:clamp(2.1rem,4vw,3.5rem);line-height:1.06;letter-spacing:-.02em;margin:0 0 22px;color:#103237;text-wrap:balance;}
-  .contato .lead{font-size:19px;line-height:1.65;color:#4a5d60;margin:0 0 36px;max-width:32rem;}
-  .btn-arrow{display:inline-flex;align-items:center;gap:12px;background:#008090;color:#fff;padding:16px 32px;border-radius:999px;font-size:15px;font-weight:600;transition:background .25s,transform .25s;}
-  .btn-arrow:hover{background:#00626f;transform:translateY(-2px);}
-  .link-secondary{display:block;margin-top:20px;font-size:15px;font-weight:600;color:#008090;transition:color .2s;}
-  .link-secondary:hover{color:#00626f;}
-  .contact-card{background:#f7f5ef;border-radius:26px;padding:14px;border:1px solid rgba(0,128,144,.14);}
+  .contato h2{font-family:'Poppins',sans-serif;font-weight:300;font-size:clamp(2.1rem,4vw,3.5rem);line-height:1.06;letter-spacing:-.02em;margin:0 0 22px;color:#024059;text-wrap:balance;}
+  .contato .lead{font-size:19px;line-height:1.65;color:rgba(38,38,38,.72);margin:0 0 36px;max-width:32rem;}
+  .btn-arrow{display:inline-flex;align-items:center;gap:12px;background:#037f8c;color:#fff;padding:16px 32px;border-radius:999px;font-size:15px;font-weight:600;transition:background .25s,transform .25s;}
+  .btn-arrow:hover{background:#024059;transform:translateY(-2px);}
+  .link-secondary{display:block;margin-top:20px;font-size:15px;font-weight:600;color:#037f8c;transition:color .2s;}
+  .link-secondary:hover{color:#024059;}
+  .contact-card{background:#fffaef;border-radius:26px;padding:14px;border:1px solid rgba(3,127,140,.14);}
   .contact-card a,.contact-card .item{display:block;padding:26px;border-radius:18px;transition:background .2s;}
   .contact-card a:hover{background:#fff;}
-  .contact-card .label{font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:#008090;margin-bottom:8px;}
-  .contact-card .val{font-family:'Jost',sans-serif;font-size:1.4rem;color:#103237;display:flex;align-items:center;gap:11px;}
-  .contact-card .val .ico{flex:none;width:22px;height:22px;color:#008090;}
-  .contact-card .divider{height:1px;background:rgba(0,128,144,.12);margin:0 26px;}
+  .contact-card .label{font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:#037f8c;margin-bottom:8px;}
+  .contact-card .val{font-family:'Poppins',sans-serif;font-size:1.4rem;color:#024059;display:flex;align-items:center;gap:11px;}
+  .contact-card .val .ico{flex:none;width:22px;height:22px;color:#037f8c;}
+  .contact-card .divider{height:1px;background:rgba(3,127,140,.12);margin:0 26px;}
 
   /* ---- Footer ---- */
-  .site-footer{background:#033b43;padding:70px 40px 40px;position:relative;overflow:hidden;}
+  .site-footer{background:#024059;padding:70px 40px 40px;position:relative;overflow:hidden;}
   .footer-top{display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap;padding-bottom:44px;border-bottom:1px solid rgba(255,255,255,.12);}
   .footer-brand{max-width:22rem;}
   .footer-brand img{height:30px;width:auto;margin-bottom:22px;}
-  .footer-brand p{font-family:'Jost',sans-serif;font-weight:300;font-size:1.3rem;line-height:1.4;color:rgba(255,255,255,.85);margin:0;}
+  .footer-brand p{font-family:'Poppins',sans-serif;font-weight:300;font-size:1.3rem;line-height:1.4;color:rgba(255,255,255,.85);margin:0;}
   .footer-cols{display:flex;gap:60px;flex-wrap:wrap;}
   .footer-col{display:flex;flex-direction:column;gap:14px;font-size:15px;}
   .footer-col a,.footer-col span{color:rgba(255,255,255,.7);transition:color .2s;}
@@ -186,7 +186,7 @@
 
   <header class="site-header">
     <div class="header-inner">
-      <a href="#top" aria-label="Tuna — início"><img src="assets/tuna-logo-teal.png" alt="Tuna" style="height:28px;width:auto;"></a>
+      <a href="#top" aria-label="Tuna — início"><img src="assets/tuna-logo-petroleo.png" alt="Tuna" style="height:28px;width:auto;"></a>
       <nav class="nav">
         <a href="#sobre" data-i="navAbout">Sobre</a>
         <a href="#servicos" data-i="navServices">Serviços</a>
@@ -209,14 +209,14 @@
   <section class="hero">
     <div class="hero-waves">
       <div class="row row1">
-        <svg viewBox="0 0 960 120" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;"><path d="M0 60 C120 14 200 106 320 60 C440 14 520 106 640 60 C760 14 840 106 960 60" stroke="#7fd4dc" stroke-width="2"/></svg>
+        <svg viewBox="0 0 960 120" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;"><path d="M0 60 C120 14 200 106 320 60 C440 14 520 106 640 60 C760 14 840 106 960 60" stroke="#1fbfbf" stroke-width="2"/></svg>
       </div>
       <div class="row row2">
-        <svg viewBox="0 0 960 120" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;"><path d="M0 60 C120 14 200 106 320 60 C440 14 520 106 640 60 C760 14 840 106 960 60" stroke="#7fd4dc" stroke-width="2"/></svg>
+        <svg viewBox="0 0 960 120" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;"><path d="M0 60 C120 14 200 106 320 60 C440 14 520 106 640 60 C760 14 840 106 960 60" stroke="#1fbfbf" stroke-width="2"/></svg>
       </div>
     </div>
     <div class="hero-inner">
-      <img class="hero-logo" src="assets/tuna-logo-white.png" alt="Tuna">
+      <img class="hero-logo" src="assets/tuna-logo-creme.png" alt="Tuna">
       <div class="kicker" data-i="heroKicker">Soluções em Marketing</div>
       <h1 data-i="heroTitle">Somos parceiros do seu crescimento.</h1>
       <p class="sub" data-i="heroSub">Desenvolvemos soluções de marketing que geram crescimento real, atuando como parceiros estratégicos em cada etapa da sua jornada.</p>
@@ -281,7 +281,7 @@
   <!-- DEPOIMENTOS -->
   <section id="depoimentos" class="depoimentos">
     <div class="wave">
-      <svg viewBox="0 0 960 120" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;"><path d="M0 60 C120 14 200 106 320 60 C440 14 520 106 640 60 C760 14 840 106 960 60" stroke="#7fd4dc" stroke-width="2"/></svg>
+      <svg viewBox="0 0 960 120" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;"><path d="M0 60 C120 14 200 106 320 60 C440 14 520 106 640 60 C760 14 840 106 960 60" stroke="#1fbfbf" stroke-width="2"/></svg>
     </div>
     <div class="wrap inner">
       <div class="intro reveal">
@@ -326,7 +326,7 @@
     <div class="wrap">
       <div class="footer-top">
         <div class="footer-brand">
-          <img src="assets/tuna-logo-white.png" alt="Tuna">
+          <img src="assets/tuna-logo-creme.png" alt="Tuna">
           <p data-i="footerTagline">Marketing que gera crescimento real.</p>
         </div>
         <div class="footer-cols">
