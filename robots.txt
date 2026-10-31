@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /onboarding-cliente.html
+Disallow: /site-tuna-ag-ncia-de-marketing/
+
+Sitemap: https://tunamarketing.pt/sitemap.xml
