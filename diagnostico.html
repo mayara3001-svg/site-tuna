@@ -315,6 +315,7 @@ form.addEventListener('submit', async (e) => {
     });
     if(res.ok){
       showStep(steps.length - 1);
+      if(window.tunaTrack) tunaTrack('Lead', {content_name: 'Diagnóstico'});
     } else {
       throw new Error('submit failed');
     }
@@ -327,5 +328,6 @@ form.addEventListener('submit', async (e) => {
 
 showStep(0);
 </script>
+<script src="/assets/consent.js"></script>
 </body>
 </html>

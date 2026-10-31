@@ -348,6 +348,7 @@
         <span style="display:flex;gap:20px;align-items:center;flex-wrap:wrap;">
           <span>Porto, Portugal</span>
           <a href="/politica-de-privacidade.html" style="color:rgba(255,255,255,.5);font-size:13px;transition:color .2s;" onmouseover="this.style.color='rgba(255,255,255,.85)'" onmouseout="this.style.color='rgba(255,255,255,.5)'" data-i="footerPrivacy">Política de Privacidade</a>
+          <a href="#" data-cookie-settings style="color:rgba(255,255,255,.5);font-size:13px;transition:color .2s;" onmouseover="this.style.color='rgba(255,255,255,.85)'" onmouseout="this.style.color='rgba(255,255,255,.5)'" data-i="footerCookies">Definições de cookies</a>
         </span>
       </div>
     </div>
@@ -384,7 +385,8 @@ const COPY = {
     contactDiagCta:'Ou faz o diagnóstico gratuito →',
     footerTagline:'Marketing que gera crescimento real.',
     footerRights:'Todos os direitos reservados.',
-    footerPrivacy:'Política de Privacidade'
+    footerPrivacy:'Política de Privacidade',
+    footerCookies:'Definições de cookies'
   },
   en: {
     navAbout:'About', navTeam:'Team', navServices:'Services', navTesti:'Testimonials', navContact:'Contact',
@@ -415,7 +417,8 @@ const COPY = {
     contactDiagCta:'Or take the free diagnosis →',
     footerTagline:'Marketing that drives real growth.',
     footerRights:'All rights reserved.',
-    footerPrivacy:'Privacy Policy'
+    footerPrivacy:'Privacy Policy',
+    footerCookies:'Cookie settings'
   }
 };
 
@@ -538,5 +541,6 @@ let initial = 'pt';
 try{ const saved = localStorage.getItem('tuna-lang'); if(saved === 'pt' || saved === 'en') initial = saved; }catch(e){}
 setLang(initial);
 </script>
+<script src="/assets/consent.js"></script>
 </body>
 </html>
