@@ -11,15 +11,15 @@
   var TEXT = {
     pt: {
       title: 'Cookies',
-      body: 'Usamos cookies do Meta para medir as visitas e mostrar a nossa publicidade a quem já visitou o site. Só são ativados se aceitar.',
-      more: 'Saber mais',
+      body: 'Usamos cookies para perceber o que interessa a quem nos visita e mostrar-lhe conteúdo mais útil. Só os ativamos se aceitar.',
+      more: 'Política de Privacidade',
       accept: 'Aceitar',
       reject: 'Recusar'
     },
     en: {
       title: 'Cookies',
-      body: 'We use Meta cookies to measure visits and show our ads to people who have visited the site. They are only enabled if you accept.',
-      more: 'Learn more',
+      body: 'We use cookies to understand what our visitors care about and show them more useful content. We only turn them on if you accept.',
+      more: 'Privacy Policy',
       accept: 'Accept',
       reject: 'Decline'
     }
@@ -65,22 +65,24 @@
     return TEXT[l] ? l : 'pt';
   }
 
+  // Barra a toda a largura, colada ao fundo (estilo pedido pela May a 04/11/2026).
   var css = '' +
-    '.tuna-cookie{position:fixed;left:16px;right:16px;bottom:16px;z-index:9999;max-width:460px;margin-left:auto;' +
-    'background:#fffaef;color:#262626;border:1px solid rgba(3,127,140,.22);border-radius:20px;padding:22px 24px;' +
-    'box-shadow:0 24px 60px -24px rgba(2,64,89,.45);font-family:Poppins,sans-serif;animation:tunaCookieIn .35s ease both;}' +
-    '@keyframes tunaCookieIn{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}' +
+    '.tuna-cookie{position:fixed;left:0;right:0;bottom:0;z-index:9999;background:#262626;color:#fffaef;' +
+    'padding:16px 24px;box-shadow:0 -10px 30px -10px rgba(0,0,0,.3);font-family:Poppins,sans-serif;animation:tunaCookieIn .35s ease both;}' +
+    '@keyframes tunaCookieIn{from{opacity:0;transform:translateY(100%);}to{opacity:1;transform:none;}}' +
     '@media (prefers-reduced-motion:reduce){.tuna-cookie{animation:none;}}' +
-    '.tuna-cookie .tc-title{margin:0 0 8px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:#037f8c;}' +
-    '.tuna-cookie p{margin:0 0 18px;font-size:14px;line-height:1.6;color:rgba(38,38,38,.8);}' +
-    '.tuna-cookie p a{color:#037f8c;text-decoration:underline;}' +
-    '.tuna-cookie .tc-actions{display:flex;gap:10px;}' +
-    '.tuna-cookie button{flex:1;padding:12px 18px;border-radius:999px;font-family:Poppins,sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:background .2s,color .2s;}' +
-    '.tuna-cookie .tc-accept{background:#037f8c;color:#fff;border:1px solid #037f8c;}' +
-    '.tuna-cookie .tc-accept:hover{background:#024059;border-color:#024059;}' +
-    '.tuna-cookie .tc-reject{background:transparent;color:#024059;border:1px solid rgba(2,64,89,.4);}' +
-    '.tuna-cookie .tc-reject:hover{background:rgba(2,64,89,.06);}' +
-    '.tuna-cookie button:focus-visible{outline:2px solid #ffc13a;outline-offset:2px;}';
+    '.tuna-cookie .tc-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:24px;}' +
+    '.tuna-cookie p{margin:0;flex:1;font-size:14px;line-height:1.55;color:rgba(255,250,239,.9);}' +
+    '.tuna-cookie p a{color:#ffc13a;text-decoration:underline;text-underline-offset:2px;white-space:nowrap;}' +
+    '.tuna-cookie .tc-actions{display:flex;align-items:center;gap:18px;flex-shrink:0;}' +
+    '.tuna-cookie button{padding:10px 24px;border-radius:999px;font-family:Poppins,sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:background .2s,color .2s,border-color .2s;}' +
+    '.tuna-cookie .tc-accept{background:#ffc13a;color:#262626;border:1px solid #ffc13a;}' +
+    '.tuna-cookie .tc-accept:hover{background:#ffd06a;border-color:#ffd06a;}' +
+    '.tuna-cookie .tc-reject{background:none;border:0;padding:10px 4px;color:rgba(255,250,239,.75);font-weight:500;text-decoration:underline;text-underline-offset:3px;}' +
+    '.tuna-cookie .tc-reject:hover{color:#fffaef;}' +
+    '.tuna-cookie button:focus-visible{outline:2px solid #1fbfbf;outline-offset:2px;}' +
+    '@media (max-width:720px){.tuna-cookie{padding:16px;}.tuna-cookie .tc-inner{flex-direction:column;align-items:stretch;gap:14px;}' +
+    '.tuna-cookie p{font-size:13px;}.tuna-cookie .tc-actions{justify-content:flex-end;}.tuna-cookie .tc-accept{flex:1;}}';
 
   function showBanner(){
     if(document.querySelector('.tuna-cookie')) return;
@@ -96,11 +98,12 @@
     box.setAttribute('role', 'dialog');
     box.setAttribute('aria-label', t.title);
     box.innerHTML =
-      '<div class="tc-title">' + t.title + '</div>' +
-      '<p>' + t.body + ' <a href="/politica-de-privacidade.html#cookies">' + t.more + '</a></p>' +
-      '<div class="tc-actions">' +
-        '<button type="button" class="tc-reject">' + t.reject + '</button>' +
-        '<button type="button" class="tc-accept">' + t.accept + '</button>' +
+      '<div class="tc-inner">' +
+        '<p>' + t.body + ' <a href="/politica-de-privacidade.html#cookies">' + t.more + '</a></p>' +
+        '<div class="tc-actions">' +
+          '<button type="button" class="tc-reject">' + t.reject + '</button>' +
+          '<button type="button" class="tc-accept">' + t.accept + '</button>' +
+        '</div>' +
       '</div>';
     document.body.appendChild(box);
     box.querySelector('.tc-accept').addEventListener('click', function(){
