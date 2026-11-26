@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Raio-X Tuna | Formulário</title>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="description" content="Formulário do Raio-X Tuna: o ponto de partida para prepararmos o plano de 90 dias do seu negócio.">
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:'Poppins',sans-serif;color:#262626;background:#fffaef;min-height:100vh;}
+  a{text-decoration:none;color:inherit;}
+  img{display:block;}
+
+  .top{display:flex;justify-content:center;padding:28px 22px 0;}
+  .top img{height:30px;width:auto;}
+
+  .shell{max-width:640px;margin:0 auto;padding:36px 22px 80px;}
+
+  .progress{height:4px;background:rgba(3,127,140,.14);border-radius:999px;overflow:hidden;margin-bottom:36px;}
+  .progress-bar{height:100%;background:#037f8c;border-radius:999px;transition:width .35s ease;width:0%;}
+
+  .card{background:#fff;border:1px solid rgba(3,127,140,.14);border-radius:26px;padding:44px 38px;box-shadow:0 26px 60px -34px rgba(3,127,140,.35);}
+
+  .step{display:none;}
+  .step.active{display:block;animation:fadeUp .4s ease both;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
+
+  .eyebrow{font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:#037f8c;margin-bottom:14px;}
+  h1.intro-title{font-family:'Poppins',sans-serif;font-weight:300;font-size:clamp(1.8rem,4vw,2.4rem);line-height:1.15;letter-spacing:-.01em;margin:0 0 16px;color:#024059;}
+  .intro-lead{font-size:17px;line-height:1.65;color:rgba(38,38,38,.72);margin:0 0 8px;}
+  .intro-meta{font-size:14px;color:rgba(38,38,38,.6);margin:0 0 32px;}
+
+  .section-tag{font-family:'Poppins',sans-serif;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(38,38,38,.6);margin:0 0 10px;}
+  .step h2{font-family:'Poppins',sans-serif;font-weight:400;font-size:1.5rem;line-height:1.3;margin:0 0 26px;color:#024059;}
+
+  label.field-label{display:block;font-size:13px;font-weight:600;letter-spacing:.04em;color:#024059;text-transform:uppercase;margin:0 0 8px;}
+  input[type=text],input[type=email],input[type=tel],textarea{width:100%;font-family:'Poppins',sans-serif;font-size:17px;padding:15px 18px;border-radius:14px;border:1.5px solid rgba(3,127,140,.22);background:#fffaef;color:#024059;transition:border-color .2s,background .2s;}
+  textarea{min-height:120px;resize:vertical;line-height:1.5;}
+  input:focus,textarea:focus{outline:none;border-color:#037f8c;background:#fff;}
+  .field{margin-bottom:20px;}
+  .hint{font-size:13px;color:rgba(38,38,38,.6);margin-top:8px;}
+
+  input[type=file]{width:100%;font-family:'Poppins',sans-serif;font-size:14px;padding:14px;border-radius:14px;border:1.5px dashed rgba(3,127,140,.35);background:#fffaef;color:rgba(38,38,38,.72);}
+
+  .choices{display:flex;flex-direction:column;gap:12px;}
+  .choice{display:block;position:relative;}
+  .choice input{position:absolute;opacity:0;pointer-events:none;}
+  .choice .box{display:flex;align-items:center;gap:14px;padding:16px 20px;border-radius:16px;border:1.5px solid rgba(3,127,140,.2);background:#fffaef;cursor:pointer;transition:border-color .2s,background .2s;font-size:16px;color:#262626;}
+  .choice .dot{flex:none;width:18px;height:18px;border-radius:50%;border:1.5px solid rgba(3,127,140,.4);display:flex;align-items:center;justify-content:center;}
+  .choice .dot::after{content:'';width:9px;height:9px;border-radius:50%;background:#037f8c;opacity:0;transform:scale(.5);transition:opacity .15s,transform .15s;}
+  .choice input:checked + .box{border-color:#037f8c;background:#f2f2f2;}
+  .choice input:checked + .box .dot::after{opacity:1;transform:scale(1);}
+  .choice .box:hover{border-color:#037f8c;}
+
+  .choice.is-check .dot{border-radius:5px;}
+  .choice.is-check .dot::after{border-radius:2px;width:8px;height:8px;}
+
+  .actions{display:flex;justify-content:space-between;align-items:center;margin-top:32px;gap:16px;}
+  .btn-next{background:#037f8c;color:#fff;padding:15px 30px;border-radius:999px;font-size:15px;font-weight:600;border:none;cursor:pointer;font-family:inherit;transition:background .2s,transform .2s;}
+  .btn-next:hover{background:#024059;transform:translateY(-1px);}
+  .btn-next:disabled{background:rgba(3,127,140,.35);cursor:not-allowed;transform:none;}
+  .btn-back{background:none;border:none;color:rgba(38,38,38,.72);font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;padding:10px;}
+  .btn-back:hover{color:#024059;}
+  .enter-hint{font-size:12px;color:rgba(38,38,38,.4);margin-top:14px;text-align:right;}
+  .optional-tag{font-size:12px;font-weight:400;color:rgba(38,38,38,.4);text-transform:none;letter-spacing:0;margin-left:8px;}
+
+  .note-box{background:rgba(255,193,58,.12);border:1px solid rgba(255,193,58,.6);border-radius:14px;padding:16px 18px;font-size:13.5px;line-height:1.55;color:#262626;margin-bottom:22px;}
+  .note-box strong{color:#262626;}
+
+  .step[data-final] .icon-ok{width:56px;height:56px;border-radius:50%;background:#f2f2f2;display:flex;align-items:center;justify-content:center;margin:0 auto 22px;color:#037f8c;}
+  .step[data-final] h2{text-align:center;}
+  .step[data-final] p{text-align:center;font-size:16px;line-height:1.6;color:rgba(38,38,38,.72);}
+  .final-actions{display:flex;justify-content:center;margin-top:26px;}
+  .btn-whatsapp{display:inline-flex;align-items:center;gap:10px;background:#fffaef;border:1.5px solid rgba(3,127,140,.22);color:#024059;padding:13px 26px;border-radius:999px;font-size:14px;font-weight:600;}
+
+  .error-msg{display:none;background:#fdeeee;border:1px solid #f3c9c9;color:#a33;padding:14px 18px;border-radius:14px;font-size:14px;margin-top:18px;}
+  .error-msg.show{display:block;}
+
+  .whatsapp-alt{text-align:center;margin-top:24px;font-size:14px;color:rgba(38,38,38,.72);}
+  .whatsapp-alt a{color:#037f8c;font-weight:600;}
+
+  @media (max-width:560px){
+    .card{padding:32px 24px;}
+    .actions{flex-direction:column-reverse;align-items:stretch;}
+    .btn-next{width:100%;}
+    .btn-back{align-self:center;}
+  }
+</style>
+</head>
+<body>
+
+<div class="top">
+  <a href="/"><img src="assets/tuna-logo-petroleo.png" alt="Tuna"></a>
+</div>
+
+<div class="shell">
+  <div class="progress"><div class="progress-bar" id="progressBar"></div></div>
+
+  <div class="card">
+    <form id="raioxForm" novalidate>
+
+      <div class="step active" data-step="intro">
+        <div class="eyebrow">Raio-X Tuna</div>
+        <h1 class="intro-title">Vamos conhecer o seu negócio por dentro.</h1>
+        <p class="intro-lead">As suas respostas são o ponto de partida do Raio-X. Juntamos o que nos conta aqui à análise do seu Instagram, do perfil no Google, do site, dos anúncios e da concorrência, e é com tudo isso que preparamos o seu plano de 90 dias.</p>
+        <p class="intro-meta">Demora cerca de 15 minutos. Pode fechar a página a meio e continuar depois, no mesmo telemóvel ou computador. Se alguma pergunta não se aplicar, passe à frente. Nunca escreva palavras-passe aqui.</p>
+        <div class="actions" style="justify-content:flex-end;flex-direction:column;align-items:flex-end;gap:10px;">
+          <button type="button" class="btn-next" id="startBtn">Começar</button>
+          <a href="#" id="restartLink" style="display:none;font-size:13px;color:rgba(38,38,38,.6);text-decoration:underline;">Começar do zero</a>
+        </div>
+      </div>
+
+      <div class="step" data-step="q1">
+        <div class="section-tag">1 · O negócio</div>
+        <h2>Para começar, quem somos a analisar?</h2>
+        <div class="field"><label class="field-label" for="f_negocio_nome">Nome do negócio</label><input type="text" id="f_negocio_nome" name="negocio_nome" required></div><div class="field"><label class="field-label" for="f_responsavel_nome">O seu nome e função</label><input type="text" id="f_responsavel_nome" name="responsavel_nome" placeholder="Ex: Ana, gerente" required></div><div class="field"><label class="field-label" for="f_responsavel_telemovel">Telemóvel / WhatsApp</label><input type="tel" id="f_responsavel_telemovel" name="responsavel_telemovel" required></div><div class="field"><label class="field-label" for="f_responsavel_email">E-mail</label><input type="email" id="f_responsavel_email" name="responsavel_email" required></div><div class="field"><label class="field-label" for="f_negocio_morada">Morada da loja ou do espaço</label><input type="text" id="f_negocio_morada" name="negocio_morada" placeholder="Rua, número e localidade" required></div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next>Próximo</button>
+        </div>
+      </div>
+      <div class="step" data-step="q2">
+        <div class="section-tag">1 · O negócio</div>
+        <h2>Conte-nos um pouco da história do negócio.</h2>
+        <div class="field"><label class="field-label" for="f_negocio_o_que_faz">Numa frase, o que faz o seu negócio?</label><textarea id="f_negocio_o_que_faz" name="negocio_o_que_faz" required></textarea></div><div class="field"><label class="field-label">Há quanto tempo está aberto?</label><div class="choices" data-radio-group="negocio_tempo"><label class="choice"><input type="radio" name="negocio_tempo" value="Menos de 1 ano" required><span class="box"><span class="dot"></span>Menos de 1 ano</span></label><label class="choice"><input type="radio" name="negocio_tempo" value="1 a 3 anos"><span class="box"><span class="dot"></span>1 a 3 anos</span></label><label class="choice"><input type="radio" name="negocio_tempo" value="3 a 10 anos"><span class="box"><span class="dot"></span>3 a 10 anos</span></label><label class="choice"><input type="radio" name="negocio_tempo" value="Mais de 10 anos"><span class="box"><span class="dot"></span>Mais de 10 anos</span></label></div></div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next>Próximo</button>
+        </div>
+      </div>
+      <div class="step" data-step="q3">
+        <div class="section-tag">1 · O negócio</div>
+        <h2>Quantas pessoas trabalham no negócio?</h2>
+        <div class="field"><div class="choices" data-radio-group="equipa_tamanho"><label class="choice"><input type="radio" name="equipa_tamanho" value="Só eu" required><span class="box"><span class="dot"></span>Só eu</span></label><label class="choice"><input type="radio" name="equipa_tamanho" value="2 ou 3 pessoas"><span class="box"><span class="dot"></span>2 ou 3 pessoas</span></label><label class="choice"><input type="radio" name="equipa_tamanho" value="4 a 10 pessoas"><span class="box"><span class="dot"></span>4 a 10 pessoas</span></label><label class="choice"><input type="radio" name="equipa_tamanho" value="Mais de 10 pessoas"><span class="box"><span class="dot"></span>Mais de 10 pessoas</span></label></div></div><div class="field"><label class="field-label" for="f_equipa_funcoes">Quem faz o quê? <span class="optional-tag">(opcional)</span></label><textarea id="f_equipa_funcoes" name="equipa_funcoes" placeholder="Ex: eu trato do atendimento e das compras, a Ana faz os exames..."></textarea></div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next>Próximo</button>
+        </div>
+      </div>
+      <div class="step" data-step="q4">
+        <div class="section-tag">1 · O negócio</div>
+        <h2>O seu negócio é independente ou faz parte de uma rede?</h2>
+        <div class="field"><div class="choices" data-radio-group="rede_tipo"><label class="choice"><input type="radio" name="rede_tipo" value="Independente" required><span class="box"><span class="dot"></span>Independente</span></label><label class="choice"><input type="radio" name="rede_tipo" value="Franquia ou loja de uma rede"><span class="box"><span class="dot"></span>Franquia ou loja de uma rede</span></label></div></div><div class="field"><label class="field-label" for="f_rede_nome">Se faz parte de uma rede, qual? <span class="optional-tag">(opcional)</span></label><input type="text" id="f_rede_nome" name="rede_nome"></div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next>Próximo</button>
+        </div>
+      </div>
+      <div class="step" data-step="q5" data-if="rede_tipo=Franquia ou loja de uma rede">
+        <div class="section-tag">1 · A rede e a sua loja</div>
+        <h2>O que é que a rede já faz pelo marketing da sua loja?</h2>
+        <div class="field"><label class="field-label">Pode escolher várias</label><div class="choices is-checkbox" data-checkbox-group="rede_envia" data-required><label class="choice is-check"><input type="checkbox" name="rede_envia" value="Publicações e artes para as redes sociais"><span class="box"><span class="dot"></span>Publicações e artes para as redes sociais</span></label><label class="choice is-check"><input type="checkbox" name="rede_envia" value="Campanhas e promoções nacionais"><span class="box"><span class="dot"></span>Campanhas e promoções nacionais</span></label><label class="choice is-check"><input type="checkbox" name="rede_envia" value="Material para a loja (montra, cartazes, folhetos)"><span class="box"><span class="dot"></span>Material para a loja (montra, cartazes, folhetos)</span></label><label class="choice is-check"><input type="checkbox" name="rede_envia" value="Anúncios pagos feitos pela rede"><span class="box"><span class="dot"></span>Anúncios pagos feitos pela rede</span></label><label class="choice is-check"><input type="checkbox" name="rede_envia" value="Página nacional no Instagram ou no Facebook"><span class="box"><span class="dot"></span>Página nacional no Instagram ou no Facebook</span></label><label class="choice is-check"><input type="checkbox" name="rede_envia" value="Site com uma página da sua loja"><span class="box"><span class="dot"></span>Site com uma página da sua loja</span></label></div><div class="field" style="margin-top:12px;"><input type="text" id="f_rede_envia_outro" name="rede_envia_outro" placeholder="Outro (opcional)"></div></div><div class="field"><label class="field-label" for="f_rede_material_uso">Com que frequência chega esse material, e costuma usá-lo? <span class="optional-tag">(opcional)</span></label><textarea id="f_rede_material_uso" name="rede_material_uso"></textarea></div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next>Próximo</button>
+        </div>
+      </div>
+      <div class="step" data-step="q6" data-if="rede_tipo=Franquia ou loja de uma rede">
+        <div class="section-tag">1 · A rede e a sua loja</div>
+        <h2>Que liberdade tem para fazer marketing só da sua loja?</h2>
+        <div class="field"><label class="field-label">A loja pode ter Instagram e Facebook próprios?</label><div class="choices" data-radio-group="rede_redes_proprias"><label class="choice"><input type="radio" name="rede_redes_proprias" value="Sim, e já temos" required><span class="box"><span class="dot"></span>Sim, e já temos</span></label><label class="choice"><input type="radio" name="rede_redes_proprias" value="Sim, mas ainda não temos"><span class="box"><span class="dot"></span>Sim, mas ainda não temos</span></label><label class="choice"><input type="radio" name="rede_redes_proprias" value="Não, só existe a página da rede"><span class="box"><span class="dot"></span>Não, só existe a página da rede</span></label><label class="choice"><input type="radio" name="rede_redes_proprias" value="Não sei"><span class="box"><span class="dot"></span>Não sei</span></label></div></div><div class="field"><label class="field-label">Pode publicar conteúdo próprio, com a sua equipa e a sua loja?</label><div class="choices" data-radio-group="rede_conteudo_proprio"><label class="choice"><input type="radio" name="rede_conteudo_proprio" value="Sim, à vontade" required><span class="box"><span class="dot"></span>Sim, à vontade</span></label><label class="choice"><input type="radio" name="rede_conteudo_proprio" value="Sim, mas a rede tem de aprovar"><span class="box"><span class="dot"></span>Sim, mas a rede tem de aprovar</span></label><label class="choice"><input type="radio" name="rede_conteudo_proprio" value="Só podemos usar o material da rede"><span class="box"><span class="dot"></span>Só podemos usar o material da rede</span></label><label class="choice"><input type="radio" name="rede_conteudo_proprio" value="Não sei"><span class="box"><span class="dot"></span>Não sei</span></label></div></div><div class="field"><label class="field-label">Pode fazer anúncios pagos em nome da loja?</label><div class="choices" data-radio-group="rede_anuncios_proprios"><label class="choice"><input type="radio" name="rede_anuncios_proprios" value="Sim, à vontade" required><span class="box"><span class="dot"></span>Sim, à vontade</span></label><label class="choice"><input type="radio" name="rede_anuncios_proprios" value="Sim, mas a rede tem de aprovar"><span class="box"><span class="dot"></span>Sim, mas a rede tem de aprovar</span></label><label class="choice"><input type="radio" name="rede_anuncios_proprios" value="Não"><span class="box"><span class="dot"></span>Não</span></label><label class="choice"><input type="radio" name="rede_anuncios_proprios" value="Não sei"><span class="box"><span class="dot"></span>Não sei</span></label></div></div><div class="field"><label class="field-label">Pode criar promoções ou campanhas só da sua loja?</label><div class="choices" data-radio-group="rede_promocoes_proprias"><label class="choice"><input type="radio" name="rede_promocoes_proprias" value="Sim, à vontade" required><span class="box"><span class="dot"></span>Sim, à vontade</span></label><label class="choice"><input type="radio" name="rede_promocoes_proprias" value="Sim, mas a rede tem de aprovar"><span class="box"><span class="dot"></span>Sim, mas a rede tem de aprovar</span></label><label class="choice"><input type="radio" name="rede_promocoes_proprias" value="Não"><span class="box"><span class="dot"></span>Não</span></label><label class="choice"><input type="radio" name="rede_promocoes_proprias" value="Não sei"><span class="box"><span class="dot"></span>Não sei</span></label></div></div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next>Próximo</button>
+        </div>
+      </div>
+      <div class="step" data-step="q7" data-if="rede_tipo=Franquia ou loja de uma rede">
+        <div class="section-tag">1 · A rede e a sua loja</div>
+        <h2>Que regras da rede temos de respeitar?</h2>
+        <div class="field"><textarea id="f_rede_regras" name="rede_regras" placeholder="Ex: manual de marca, cores e logótipo, preços que não se podem publicar, temas ou parceiros proibidos"></textarea></div><div class="field"><label class="field-label" for="f_rede_aprovacao">Quem trata do marketing na rede, e como se pede uma aprovação? <span class="optional-tag">(opcional)</span></label><textarea id="f_rede_aprovacao" name="rede_aprovacao"></textarea></div><div class="field"><label class="field-label" for="f_rede_o_que_falta">O que gostava de fazer na sua loja que o material da rede não cobre? <span class="optional-tag">(opcional)</span></label><textarea id="f_rede_o_que_falta" name="rede_o_que_falta" placeholder="É aqui que a sua loja se pode destacar das outras da mesma rede"></textarea></div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next>Próximo</button>
+        </div>
+      </div>
+      <div class="step" data-step="q8">
+        <div class="section-tag">2 · O que vende</div>
+        <h2>Quais são os produtos ou serviços que mais vende?</h2>
+        <div class="field"><textarea id="f_produtos_mais_vendidos" name="produtos_mais_vendidos" placeholder="Os 3 principais, por ordem de importância" required></textarea></div><div class="field"><label class="field-label" for="f_produtos_a_crescer">E qual gostaria de vender mais? (o que dá mais margem ou mais o distingue) <span class="optional-tag">(opcional)</span></label><textarea id="f_produtos_a_crescer" name="produtos_a_crescer"></textarea></div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next>Próximo</button>
+        </div>
+      </div>
+      <div class="step" data-step="q9">
+        <div class="section-tag">2 · O que vende</div>
+        <h2>Quanto vale, em média, uma venda?</h2>
+        <div class="field"><label class="field-label" for="f_ticket_medio">Valor médio que um cliente gasta por visita <span class="optional-tag">(opcional)</span></label><input type="text" id="f_ticket_medio" name="ticket_medio" placeholder="Ex: 180 €"></div><div class="field"><label class="field-label" for="f_cliente_regressa">Os clientes costumam voltar? De quanto em quanto tempo? <span class="optional-tag">(opcional)</span></label><textarea id="f_cliente_regressa" name="cliente_regressa" placeholder="Ex: a maioria volta de 2 em 2 anos para trocar de óculos"></textarea></div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next>Próximo</button>
+        </div>
+      </div>
+      <div class="step" data-step="q10">
+        <div class="section-tag">3 · Os seus clientes</div>
+        <h2>Quem é o seu cliente típico?</h2>
+        <div class="field"><textarea id="f_cliente_tipico" name="cliente_tipico" placeholder="Idade, de onde vem, o que procura, como decide" required></textarea></div><div class="field"><label class="field-label" for="f_cliente_porque_escolhe">Porque é que os clientes o escolhem a si e não a outro?</label><textarea id="f_cliente_porque_escolhe" name="cliente_porque_escolhe" required></textarea></div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next>Próximo</button>
+        </div>
+      </div>
+      <div class="step" data-step="q11">
+        <div class="section-tag">3 · Os seus clientes</div>
+        <h2>Como é que os clientes novos chegam até si?</h2>
+        <div class="field"><label class="field-label">Pode escolher várias</label><div class="choices is-checkbox" data-checkbox-group="origem_clientes" data-required><label class="choice is-check"><input type="checkbox" name="origem_clientes" value="Passam na rua e entram"><span class="box"><span class="dot"></span>Passam na rua e entram</span></label><label class="choice is-check"><input type="checkbox" name="origem_clientes" value="Indicação de outros clientes"><span class="box"><span class="dot"></span>Indicação de outros clientes</span></label><label class="choice is-check"><input type="checkbox" name="origem_clientes" value="Pesquisa no Google ou no Google Maps"><span class="box"><span class="dot"></span>Pesquisa no Google ou no Google Maps</span></label><label class="choice is-check"><input type="checkbox" name="origem_clientes" value="Instagram"><span class="box"><span class="dot"></span>Instagram</span></label><label class="choice is-check"><input type="checkbox" name="origem_clientes" value="Facebook"><span class="box"><span class="dot"></span>Facebook</span></label><label class="choice is-check"><input type="checkbox" name="origem_clientes" value="Site"><span class="box"><span class="dot"></span>Site</span></label><label class="choice is-check"><input type="checkbox" name="origem_clientes" value="Anúncios pagos"><span class="box"><span class="dot"></span>Anúncios pagos</span></label><label class="choice is-check"><input type="checkbox" name="origem_clientes" value="Acordos, convenções ou seguros"><span class="box"><span class="dot"></span>Acordos, convenções ou seguros</span></label></div><div class="field" style="margin-top:12px;"><input type="text" id="f_origem_clientes_outro" name="origem_clientes_outro" placeholder="Outro (opcional)"></div></div><div class="field"><label class="field-label" for="f_clientes_novos_mes">Mais ou menos quantos clientes novos recebe por mês? <span class="optional-tag">(opcional)</span></label><input type="text" id="f_clientes_novos_mes" name="clientes_novos_mes" placeholder="Ex: 20 a 30"></div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next>Próximo</button>
+        </div>
+      </div>
+      <div class="step" data-step="q12">
+        <div class="section-tag">3 · Os seus clientes</div>
+        <h2>Que dúvidas ou objeções ouve mais vezes antes de alguém comprar?</h2>
+        <div class="field"><textarea id="f_objecoes" name="objecoes" placeholder="Ex: &quot;é caro&quot;, &quot;vou pensar&quot;, &quot;na loja X é mais barato&quot;, &quot;demora quanto tempo?&quot;" required></textarea></div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next>Próximo</button>
+        </div>
+      </div>
+      <div class="step" data-step="q13">
+        <div class="section-tag">4 · Contacto e atendimento</div>
+        <h2>Por onde é que os clientes o contactam?</h2>
+        <div class="field"><label class="field-label">Pode escolher várias</label><div class="choices is-checkbox" data-checkbox-group="canais_contacto" data-required><label class="choice is-check"><input type="checkbox" name="canais_contacto" value="Telefone"><span class="box"><span class="dot"></span>Telefone</span></label><label class="choice is-check"><input type="checkbox" name="canais_contacto" value="WhatsApp"><span class="box"><span class="dot"></span>WhatsApp</span></label><label class="choice is-check"><input type="checkbox" name="canais_contacto" value="Mensagens no Instagram ou no Facebook"><span class="box"><span class="dot"></span>Mensagens no Instagram ou no Facebook</span></label><label class="choice is-check"><input type="checkbox" name="canais_contacto" value="E-mail"><span class="box"><span class="dot"></span>E-mail</span></label><label class="choice is-check"><input type="checkbox" name="canais_contacto" value="Só ao balcão"><span class="box"><span class="dot"></span>Só ao balcão</span></label><label class="choice is-check"><input type="checkbox" name="canais_contacto" value="Marcação online"><span class="box"><span class="dot"></span>Marcação online</span></label></div></div><div class="field"><label class="field-label" for="f_quem_responde">Quem responde às mensagens?</label><input type="text" id="f_quem_responde" name="quem_responde" placeholder="Ex: eu, a equipa da loja..." required></div><div class="field"><label class="field-label">Em quanto tempo costumam responder?</label><div class="choices" data-radio-group="tempo_resposta"><label class="choice"><input type="radio" name="tempo_resposta" value="No próprio momento ou em menos de 1 hora" required><span class="box"><span class="dot"></span>No próprio momento ou em menos de 1 hora</span></label><label class="choice"><input type="radio" name="tempo_resposta" value="No mesmo dia"><span class="box"><span class="dot"></span>No mesmo dia</span></label><label class="choice"><input type="radio" name="tempo_resposta" value="No dia seguinte"><span class="box"><span class="dot"></span>No dia seguinte</span></label><label class="choice"><input type="radio" name="tempo_resposta" value="Às vezes ficam por responder"><span class="box"><span class="dot"></span>Às vezes ficam por responder</span></label></div></div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next>Próximo</button>
+        </div>
+      </div>
+      <div class="step" data-step="q14">
+        <div class="section-tag">5 · Presença online</div>
+        <h2>Onde é que o seu negócio está online?</h2>
+        <div class="field"><label class="field-label" for="f_instagram">Instagram <span class="optional-tag">(opcional)</span></label><input type="text" id="f_instagram" name="instagram" placeholder="@"></div><div class="field"><label class="field-label" for="f_facebook">Facebook <span class="optional-tag">(opcional)</span></label><input type="text" id="f_facebook" name="facebook" placeholder="Nome ou link da página"></div><div class="field"><label class="field-label" for="f_site">Site <span class="optional-tag">(opcional)</span></label><input type="text" id="f_site" name="site" placeholder="www."></div><div class="field"><label class="field-label" for="f_google_nome">Nome exato do negócio no Google (Perfil da Empresa / Google Maps) <span class="optional-tag">(opcional)</span></label><input type="text" id="f_google_nome" name="google_nome"></div><div class="field"><label class="field-label" for="f_outras_redes">Outras redes <span class="optional-tag">(opcional)</span></label><input type="text" id="f_outras_redes" name="outras_redes" placeholder="Ex: TikTok, YouTube"></div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next>Próximo</button>
+        </div>
+      </div>
+      <div class="step" data-step="q15">
+        <div class="section-tag">5 · Presença online</div>
+        <h2>Quem trata hoje das redes sociais?</h2>
+        <div class="field"><div class="choices" data-radio-group="redes_quem"><label class="choice"><input type="radio" name="redes_quem" value="Eu próprio" required><span class="box"><span class="dot"></span>Eu próprio</span></label><label class="choice"><input type="radio" name="redes_quem" value="Alguém da equipa"><span class="box"><span class="dot"></span>Alguém da equipa</span></label><label class="choice"><input type="radio" name="redes_quem" value="Uma agência ou freelancer"><span class="box"><span class="dot"></span>Uma agência ou freelancer</span></label><label class="choice"><input type="radio" name="redes_quem" value="Ninguém, estão paradas"><span class="box"><span class="dot"></span>Ninguém, estão paradas</span></label></div></div><div class="field"><label class="field-label">Com que frequência publicam?</label><div class="choices" data-radio-group="redes_frequencia"><label class="choice"><input type="radio" name="redes_frequencia" value="Várias vezes por semana" required><span class="box"><span class="dot"></span>Várias vezes por semana</span></label><label class="choice"><input type="radio" name="redes_frequencia" value="Uma vez por semana"><span class="box"><span class="dot"></span>Uma vez por semana</span></label><label class="choice"><input type="radio" name="redes_frequencia" value="Algumas vezes por mês"><span class="box"><span class="dot"></span>Algumas vezes por mês</span></label><label class="choice"><input type="radio" name="redes_frequencia" value="Quase nunca"><span class="box"><span class="dot"></span>Quase nunca</span></label></div></div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next>Próximo</button>
+        </div>
+      </div>
+      <div class="step" data-step="q16">
+        <div class="section-tag">5 · Presença online</div>
+        <h2>Já fizeram anúncios pagos?</h2>
+        <div class="field"><div class="choices" data-radio-group="anuncios"><label class="choice"><input type="radio" name="anuncios" value="Sim, temos anúncios ativos" required><span class="box"><span class="dot"></span>Sim, temos anúncios ativos</span></label><label class="choice"><input type="radio" name="anuncios" value="Já fizemos, mas parámos"><span class="box"><span class="dot"></span>Já fizemos, mas parámos</span></label><label class="choice"><input type="radio" name="anuncios" value="Só usámos o botão &quot;Promover&quot; do Instagram"><span class="box"><span class="dot"></span>Só usámos o botão &quot;Promover&quot; do Instagram</span></label><label class="choice"><input type="radio" name="anuncios" value="Nunca fizemos"><span class="box"><span class="dot"></span>Nunca fizemos</span></label></div></div><div class="field"><label class="field-label" for="f_anuncios_detalhe">Se já fizeram: onde, quanto investiam por mês e o que acharam do resultado <span class="optional-tag">(opcional)</span></label><textarea id="f_anuncios_detalhe" name="anuncios_detalhe"></textarea></div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next>Próximo</button>
+        </div>
+      </div>
+      <div class="step" data-step="q17">
+        <div class="section-tag">6 · Concorrência</div>
+        <h2>Quem são os concorrentes que mais o preocupam?</h2>
+        <div class="field"><textarea id="f_concorrentes" name="concorrentes" placeholder="2 ou 3 nomes, com a localidade" required></textarea></div><div class="field"><label class="field-label" for="f_concorrentes_fazem_bem">O que acha que eles fazem bem? <span class="optional-tag">(opcional)</span></label><textarea id="f_concorrentes_fazem_bem" name="concorrentes_fazem_bem"></textarea></div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next>Próximo</button>
+        </div>
+      </div>
+      <div class="step" data-step="q18">
+        <div class="section-tag">7 · Objetivos</div>
+        <h2>O que gostava que mudasse nos próximos 90 dias?</h2>
+        <div class="field"><textarea id="f_objetivo_90_dias" name="objetivo_90_dias" placeholder="Ex: mais marcações de exames, mais gente a conhecer a loja, vender mais lentes de contacto..." required></textarea></div><div class="field"><label class="field-label" for="f_maior_obstaculo">E qual é hoje o maior obstáculo ao crescimento do negócio?</label><textarea id="f_maior_obstaculo" name="maior_obstaculo" required></textarea></div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next>Próximo</button>
+        </div>
+      </div>
+      <div class="step" data-step="q19">
+        <div class="section-tag">7 · Objetivos</div>
+        <h2>Há alturas do ano ou datas importantes que devamos conhecer?</h2>
+        <div class="field"><textarea id="f_datas_importantes" name="datas_importantes" placeholder="Ex: regresso às aulas, campanhas de verão, aniversário da loja, épocas mais fracas"></textarea></div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next>Próximo</button>
+        </div>
+      </div>
+      <div class="step" data-step="q20">
+        <div class="section-tag">8 · Números</div>
+        <h2>Para o plano caber no seu negócio, ajudam-nos estes números.</h2>
+        <div class="note-box">Estas respostas ficam só connosco e servem para o plano ser realista. Se preferir, passe à frente.</div><div class="field"><label class="field-label">Faturação média por mês</label><div class="choices" data-radio-group="faturacao"><label class="choice"><input type="radio" name="faturacao" value="Menos de 5.000 €" required><span class="box"><span class="dot"></span>Menos de 5.000 €</span></label><label class="choice"><input type="radio" name="faturacao" value="5.000 € a 15.000 €"><span class="box"><span class="dot"></span>5.000 € a 15.000 €</span></label><label class="choice"><input type="radio" name="faturacao" value="15.000 € a 30.000 €"><span class="box"><span class="dot"></span>15.000 € a 30.000 €</span></label><label class="choice"><input type="radio" name="faturacao" value="Mais de 30.000 €"><span class="box"><span class="dot"></span>Mais de 30.000 €</span></label><label class="choice"><input type="radio" name="faturacao" value="Prefiro não dizer"><span class="box"><span class="dot"></span>Prefiro não dizer</span></label></div></div><div class="field"><label class="field-label">Quanto admite investir por mês em marketing (serviços e anúncios)?</label><div class="choices" data-radio-group="orcamento_marketing"><label class="choice"><input type="radio" name="orcamento_marketing" value="Até 150 €" required><span class="box"><span class="dot"></span>Até 150 €</span></label><label class="choice"><input type="radio" name="orcamento_marketing" value="150 € a 300 €"><span class="box"><span class="dot"></span>150 € a 300 €</span></label><label class="choice"><input type="radio" name="orcamento_marketing" value="300 € a 600 €"><span class="box"><span class="dot"></span>300 € a 600 €</span></label><label class="choice"><input type="radio" name="orcamento_marketing" value="Mais de 600 €"><span class="box"><span class="dot"></span>Mais de 600 €</span></label><label class="choice"><input type="radio" name="orcamento_marketing" value="Ainda não sei"><span class="box"><span class="dot"></span>Ainda não sei</span></label></div></div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next>Próximo</button>
+        </div>
+      </div>
+      <div class="step" data-step="q21">
+        <div class="section-tag">9 · Marca e materiais</div>
+        <h2>Que materiais já tem?</h2>
+        <div class="field"><label class="field-label">Logótipo e cores da marca</label><div class="choices" data-radio-group="marca"><label class="choice"><input type="radio" name="marca" value="Sim, logótipo e cores definidos" required><span class="box"><span class="dot"></span>Sim, logótipo e cores definidos</span></label><label class="choice"><input type="radio" name="marca" value="Só o logótipo"><span class="box"><span class="dot"></span>Só o logótipo</span></label><label class="choice"><input type="radio" name="marca" value="Não temos nada definido"><span class="box"><span class="dot"></span>Não temos nada definido</span></label></div></div><div class="field"><label class="field-label">Fotografias e vídeos próprios (da loja, da equipa, dos produtos)</label><div class="choices" data-radio-group="fotos_videos"><label class="choice"><input type="radio" name="fotos_videos" value="Sim, temos bastantes" required><span class="box"><span class="dot"></span>Sim, temos bastantes</span></label><label class="choice"><input type="radio" name="fotos_videos" value="Algumas"><span class="box"><span class="dot"></span>Algumas</span></label><label class="choice"><input type="radio" name="fotos_videos" value="Não temos"><span class="box"><span class="dot"></span>Não temos</span></label></div></div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next>Próximo</button>
+        </div>
+      </div>
+      <div class="step" data-step="q22">
+        <div class="section-tag">10 · Para além do Raio-X</div>
+        <h2>Em que áreas gostava de ter ajuda?</h2>
+        <div class="field"><label class="field-label">Pode escolher várias. Serve para o plano já ter isto em conta.</label><div class="choices is-checkbox" data-checkbox-group="interesse_servicos" data-required><label class="choice is-check"><input type="checkbox" name="interesse_servicos" value="Gestão das redes sociais (publicações e conteúdos)"><span class="box"><span class="dot"></span>Gestão das redes sociais (publicações e conteúdos)</span></label><label class="choice is-check"><input type="checkbox" name="interesse_servicos" value="Anúncios no Instagram, no Facebook ou no Google"><span class="box"><span class="dot"></span>Anúncios no Instagram, no Facebook ou no Google</span></label><label class="choice is-check"><input type="checkbox" name="interesse_servicos" value="Perfil no Google e avaliações"><span class="box"><span class="dot"></span>Perfil no Google e avaliações</span></label><label class="choice is-check"><input type="checkbox" name="interesse_servicos" value="Site"><span class="box"><span class="dot"></span>Site</span></label><label class="choice is-check"><input type="checkbox" name="interesse_servicos" value="Logótipo e identidade visual"><span class="box"><span class="dot"></span>Logótipo e identidade visual</span></label><label class="choice is-check"><input type="checkbox" name="interesse_servicos" value="Vídeos"><span class="box"><span class="dot"></span>Vídeos</span></label><label class="choice is-check"><input type="checkbox" name="interesse_servicos" value="Ainda não sei, quero ver primeiro o plano"><span class="box"><span class="dot"></span>Ainda não sei, quero ver primeiro o plano</span></label></div></div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="button" class="btn-next" data-next>Próximo</button>
+        </div>
+      </div>
+
+      <div class="step" data-step="fim">
+        <div class="section-tag">Para terminar</div>
+        <h2>Há alguma coisa que não perguntámos e que ache importante partilhar?</h2>
+        <div class="field"><textarea id="f_observacoes" name="observacoes"></textarea></div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back>Anterior</button>
+          <button type="submit" class="btn-next" id="submitBtn">Enviar</button>
+        </div>
+        <div class="error-msg" id="errorMsg">Não foi possível enviar. Tente novamente ou escreva-nos para <a href="mailto:geral@tunamarketing.pt" style="color:#a33;text-decoration:underline;">geral@tunamarketing.pt</a>.</div>
+      </div>
+
+      <div class="step" data-step="obrigado" data-final>
+        <div class="icon-ok">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        </div>
+        <h2>Recebemos as suas respostas.</h2>
+        <p>Obrigada! Começamos agora a análise e combinamos consigo o dia da reunião para lhe apresentar o seu plano de 90 dias.</p>
+        <div class="final-actions">
+          <a class="btn-whatsapp" href="https://wa.me/351935827977?text=Ol%C3%A1%20Mayara%21%20J%C3%A1%20preenchi%20o%20formul%C3%A1rio%20do%20Raio-X" target="_blank" rel="noopener">Avisar a Mayara no WhatsApp &rarr;</a>
+        </div>
+      </div>
+
+      <input type="hidden" name="page_url" id="page_url">
+      <input type="hidden" name="_subject" value="Raio-X Tuna: respostas do formulário">
+    </form>
+  </div>
+
+  <p class="whatsapp-alt">Tem alguma dúvida a meio? <a href="https://wa.me/351935827977?text=Ol%C3%A1%20Mayara%21%20Tenho%20uma%20d%C3%BAvida%20no%20formul%C3%A1rio%20do%20Raio-X" target="_blank" rel="noopener">Fale com a Mayara no WhatsApp</a>.</p>
+</div>
+
+<script>
+const FORM_ENDPOINT = "https://formspree.io/f/xvzenlaw";
+document.getElementById('page_url').value = window.location.href;
+
+const allSteps = Array.from(document.querySelectorAll('.step'));
+let currentStepEl = allSteps[0];
+
+function stepVisible(s){
+  if(!s.dataset.if) return true;
+  const [name, value] = s.dataset.if.split('=');
+  const sel = formEl.querySelector(`input[name="${name}"]:checked`);
+  return !!sel && sel.value === value;
+}
+function visibleSteps(){ return allSteps.filter(stepVisible); }
+
+function updateProgress(){
+  const vis = visibleSteps();
+  const total = vis.length - 2;
+  const idx = Math.max(0, Math.min(vis.indexOf(currentStepEl) - 1, total));
+  document.getElementById('progressBar').style.width = (idx / total * 100) + '%';
+}
+
+function showStep(el){
+  allSteps.forEach(s => s.classList.toggle('active', s === el));
+  currentStepEl = el;
+  updateProgress();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function stepValid(step){
+  for(const el of step.querySelectorAll('input[type=text][required],input[type=email][required],input[type=tel][required],textarea[required]')){
+    if(!el.value.trim()) { el.focus(); return false; }
+    if(el.type === 'email' && !el.value.includes('@')) { el.focus(); return false; }
+  }
+  return true;
+}
+
+function goNext(){
+  if(!stepValid(currentStepEl)) return;
+  const vis = visibleSteps();
+  const idx = vis.indexOf(currentStepEl);
+  if(idx < vis.length - 1) showStep(vis[idx + 1]);
+  saveDraft();
+}
+function goBack(){
+  const vis = visibleSteps();
+  const idx = vis.indexOf(currentStepEl);
+  if(idx > 0) showStep(vis[idx - 1]);
+  saveDraft();
+}
+document.querySelectorAll('[data-next]').forEach(b => b.addEventListener('click', goNext));
+document.querySelectorAll('[data-back]').forEach(b => b.addEventListener('click', goBack));
+
+const DRAFT_KEY = 'tuna_raiox_draft_v1';
+const formEl = document.getElementById('raioxForm');
+
+function serializeForm(){
+  const data = {};
+  formEl.querySelectorAll('input[type=text],input[type=email],input[type=tel],textarea').forEach(el => { if(el.value) data[el.name] = el.value; });
+  formEl.querySelectorAll('input[type=radio]:checked').forEach(el => { data[el.name] = el.value; });
+  new Set(Array.from(formEl.querySelectorAll('input[type=checkbox]')).map(el => el.name)).forEach(name => {
+    const v = Array.from(formEl.querySelectorAll(`input[type=checkbox][name="${name}"]:checked`)).map(el => el.value);
+    if(v.length) data[name] = v;
+  });
+  return data;
+}
+function applyDraft(fields){
+  Object.keys(fields).forEach(name => {
+    const els = formEl.querySelectorAll(`[name="${name}"]`);
+    if(!els.length) return;
+    const value = fields[name];
+    if(els[0].type === 'checkbox'){ const vs = Array.isArray(value) ? value : [value]; els.forEach(el => el.checked = vs.includes(el.value)); }
+    else if(els[0].type === 'radio'){ els.forEach(el => el.checked = (el.value === value)); }
+    else { els[0].value = value; }
+  });
+}
+function saveDraft(){
+  if(currentStepEl.dataset.step === 'obrigado') return;
+  try{ localStorage.setItem(DRAFT_KEY, JSON.stringify({step: currentStepEl.dataset.step, fields: serializeForm()})); }catch(e){}
+}
+function loadDraft(){ try{ const r = localStorage.getItem(DRAFT_KEY); return r ? JSON.parse(r) : null; }catch(e){ return null; } }
+function clearDraft(){ try{ localStorage.removeItem(DRAFT_KEY); }catch(e){} }
+formEl.addEventListener('input', saveDraft);
+formEl.addEventListener('change', saveDraft);
+
+const draft = loadDraft();
+const startBtn = document.getElementById('startBtn');
+const restartLink = document.getElementById('restartLink');
+if(draft && draft.fields && Object.keys(draft.fields).length){
+  applyDraft(draft.fields);
+  startBtn.textContent = 'Continuar de onde ficou';
+  restartLink.style.display = 'inline';
+}
+startBtn.addEventListener('click', () => {
+  if(draft && draft.fields && Object.keys(draft.fields).length){
+    showStep(allSteps.find(s => s.dataset.step === draft.step) || allSteps[1]);
+  } else { goNext(); }
+});
+restartLink.addEventListener('click', e => { e.preventDefault(); clearDraft(); formEl.reset(); location.reload(); });
+
+document.querySelectorAll('input[type=text],input[type=email],input[type=tel]').forEach(inp => {
+  inp.addEventListener('keydown', e => { if(e.key === 'Enter'){ e.preventDefault(); goNext(); } });
+});
+
+const submitBtn = document.getElementById('submitBtn');
+const errorMsg = document.getElementById('errorMsg');
+formEl.addEventListener('submit', async e => {
+  e.preventDefault();
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'A enviar…';
+  errorMsg.classList.remove('show');
+  try{
+    const res = await fetch(FORM_ENDPOINT, { method:'POST', headers:{'Accept':'application/json'}, body:new FormData(formEl) });
+    if(!res.ok) throw new Error('submit failed');
+    clearDraft();
+    showStep(document.querySelector('[data-final]'));
+  }catch(err){
+    errorMsg.classList.add('show');
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Enviar';
+  }
+});
+
+showStep(allSteps[0]);
+</script>
+</body>
+</html>
